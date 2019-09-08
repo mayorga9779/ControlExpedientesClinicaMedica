@@ -27,7 +27,7 @@ namespace ControlExpedientesMedicos.Models
         public string CadenaConexionBD()
         {
             string cadena_conexion = "";
-            cadena_conexion += " Data Source=DELL_MAYORGA\\SQLEXPRESS; Initial Catalog=CONTROL_EXPEDIENTES_MEDICOS;Persist Security Info=True;User ID=sa; Password=@ndroid9779";
+            cadena_conexion += " Data Source=MAYORGA-ASUSPC; Initial Catalog=CONTROL_EXPEDIENTES_MEDICOS;Persist Security Info=True;User ID=sa; Password=@ndroid9779";
 
             return cadena_conexion;
         }
@@ -50,6 +50,7 @@ namespace ControlExpedientesMedicos.Models
             }
             catch (SqlException ex)
             {
+                Console.Write(ex.StackTrace);
                 dt = null;
             }
             finally
