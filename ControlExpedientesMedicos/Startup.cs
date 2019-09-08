@@ -70,7 +70,7 @@ namespace ControlExpedientesMedicos
             {
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller=Login}/{action=Login}/{id?}");
+                    template: "{controller=Default}/{action=Inicio}/{id?}");
             });
         }
     }
