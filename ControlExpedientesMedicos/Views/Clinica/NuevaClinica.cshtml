@@ -1,0 +1,83 @@
+﻿
+@{
+    ViewData["Title"] = "";
+    Layout = "~/Views/Shared/_MasterPage.cshtml";
+}
+
+<style>
+    #divContenidoDepartamentos {
+        position: relative;
+        float: left;
+        width: 100%;
+        height: 100%;
+        //background-color:#808080;
+        overflow-x: auto;
+    }
+
+    #diviTitulo {
+        position: relative;
+        float: left;
+        width: 100%;
+        height: 10%;
+        //background-color:#000000;
+        text-align: center;
+        margin: 0;
+        color: #808080;
+    }
+
+    #tblContenido {
+        width: 75%;
+    }
+
+    #btnAceptar {
+        width: 125px;
+        height: 40px;
+    }
+    .clinica{
+        width: 200px;
+    }
+    .tdlabel{
+        width: 150px;
+    }
+</style>
+
+<div id="divContenidoClinica">
+    <div id="diviTitulo">
+        <h1>Creación de clínica</h1>
+    </div>
+    <div id="divContenido">
+        <form>
+            <table id="tblContenido">
+                <tr>
+                    <td class="tdlabel"><label>Nombre clínica:</label></td>
+                    <td><input type="text" id="txtClinica" name="txtClinica" class="clinica" /></td>
+                </tr>
+                <tr>
+                    <td class="tdlabel"><label>Descripción:</label></td>
+                    <td><textarea rows="4" cols="50"></textarea></td>
+                </tr>
+                <tr>
+                    <td class="tdlabel"><label>Dirección:</label></td>
+                    <td><input type="text" id="txtClinica" name="txtClinica" class="clinica" /></td>
+                </tr>
+                <tr>
+                    <td class="tdlabel"><label>No. teléfono:</label></td>
+                    <td><input type="tel" id="txtClinica" name="txtClinica" class="clinica" /></td>
+                </tr>
+                <tr>
+                    <td class="tdlabel"><label>Correo electrónico:</label></td>
+                    <td><input type="email" id="txtClinica" name="txtClinica" class="clinica" /></td>
+                </tr>
+                <tr>
+                    <td class="tdlabel"><label>Sitio web:</label></td>
+                    <td><input type="text" id="txtClinica" name="txtClinica" class="clinica" /></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td><input type="submit" id="btnAceptar" name="btnAceptar" value="Guardar" /></td>
+                </tr>
+            </table>
+        </form>
+    </div>
+</div>
+

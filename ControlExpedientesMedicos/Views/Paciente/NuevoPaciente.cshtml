@@ -1,0 +1,117 @@
+﻿
+@{
+    ViewData["Title"] = "Pacientes";
+    Layout = "~/Views/Shared/_MasterPage.cshtml";
+}
+
+<style>
+    #divContenidoPaciente {
+        position: relative;
+        float: left;
+        width: 100%;
+        height: 100%;
+        //background-color:#808080;
+        overflow-x: auto;
+    }
+
+    #diviTitulo {
+        position: relative;
+        float: left;
+        width: 100%;
+        height: 10%;
+        //background-color:#000000;
+        text-align: center;
+        margin: 0;
+        color: #808080;
+        margin-bottom: 20px;
+    }
+
+    #tblContenido {
+        width: 100%;
+    }
+
+    #btnAceptar {
+        width: 125px;
+        height: 40px;
+    }
+
+    .paciente {
+        width: 200px;
+    }
+
+    .tdlabel {
+        width: 200px;
+    }
+    .txtInput{
+        width: 225px;
+    }
+</style>
+
+<div id="divContenidoPaciente">
+    <div id="diviTitulo">
+        <h1>Creación de pacientes</h1>
+    </div>
+    <div id="divContenido">
+        <form>
+            <table id="tblContenido">
+                <tr>
+                    <td class="tdlabel"><label>Nombres del paciente:</label></td>
+                    <td class="txtInput"><input type="text" id="txtNombresP" name="txtNombresP" class="paciente" /></td>
+                    <td><label>Fotografía:</label></td>
+                </tr>
+                <tr>
+                    <td class="tdlabel"><label>Apellidos del paciente:</label></td>
+                    <td><input type="text" id="txtApellidosP" name="txtApellidosP" class="paciente" /></td>
+                    <td><input type="file" id="fFotoP" name="fFotoP" accept="image/png, image/jpeg" /></td>
+                </tr>
+                <tr>
+                    <td class="tdlabel"><label>Dirección:</label></td>
+                    <td><input type="text" id="txtDireccionP" name="txtDireccionP" class="paciente" /></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td class="tdlabel"><label>No. teléfono:</label></td>
+                    <td><input type="tel" id="txtTelefonoP" name="txtTelefonoP" class="paciente" /></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td class="tdlabel"><label>Fecha de nacimiento:</label></td>
+                    <td><input type="date" id="txtFecNacP" name="txtFecNacP" class="paciente" /></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td class="tdlabel"><label>No. Seguro social:</label></td>
+                    <td><input type="text" id="txtSeguroSocial" name="txtSeguroSocial" class="paciente" /></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td class="tdlabel"><label>Genero:</label></td>
+                    <td>
+                        <select id="cbGenero" name="cbGenero" class="paciente">
+                            <option value="0">-- Selecione una opcion --</option>
+                            <option value="1">Hombre</option>
+                            <option value="2">Mujer</option>
+                        </select>
+                    </td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td class="tdlabel"><label>Correo electrónico:</label></td>
+                    <td><input type="text" id="txtEmailP" name="txtEmailP" class="paciente" /></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td class="tdlabel"></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td><input type="submit" id="btnAceptar" name="btnAceptar" value="Guardar" /></td>
+                    <td></td>
+                </tr>
+            </table>
+        </form>
+    </div>
+</div>
+

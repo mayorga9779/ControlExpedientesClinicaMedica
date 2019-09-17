@@ -1,0 +1,108 @@
+﻿
+@{
+    ViewData["Title"] = "Empleados";
+    Layout = "~/Views/Shared/_MasterPage.cshtml";
+}
+
+<style>
+    #divContenidoEmpleado {
+        position: relative;
+        float: left;
+        width: 100%;
+        height: 100%;
+        //background-color:#808080;
+        overflow-x: auto;
+    }
+
+    #diviTitulo {
+        position: relative;
+        float: left;
+        width: 100%;
+        height: 10%;
+        //background-color:#000000;
+        text-align: center;
+        margin: 0;
+        color: #808080;
+        margin-bottom: 20px;
+    }
+
+    #tblContenido {
+        width: 75%;
+    }
+
+    #btnAceptar {
+        width: 125px;
+        height: 40px;
+    }
+
+    .empleado {
+        width: 200px;
+    }
+
+    .tdlabel {
+        width: 200px;
+    }
+</style>
+
+<div id="divContenidoEmpleado">
+    <div id="diviTitulo">
+        <h1>Creación de empleados</h1>
+    </div>
+    <div id="divContenido">
+        <form>
+            <table id="tblContenido">
+                <tr>
+                    <td class="tdlabel"><label>Nombres del empleado:</label></td>
+                    <td><input type="text" id="txtNombres" name="txtNombres" class="empleado" /></td>
+                    <td><input type="file" id="fFotoE" name="fFotoE" accept="image/png, image/jpeg" /></td>
+                </tr>
+                <tr>
+                    <td class="tdlabel"><label>Apellidos del empleado:</label></td>
+                    <td><input type="text" id="txtApellidos" name="txtApellidos" class="empleado" /></td>
+                </tr>
+                <tr>
+                    <td class="tdlabel"><label>Dirección:</label></td>
+                    <td><input type="text" id="txtDireccionE" name="txtDireccionE" class="empleado" /></td>
+                </tr>
+                <tr>
+                    <td class="tdlabel"><label>No. teléfono:</label></td>
+                    <td><input type="tel" id="txtTelefonoE" name="txtTelefonoE" class="empleado" /></td>
+                </tr>
+                <tr>
+                    <td class="tdlabel"><label>Fecha de nacimiento:</label></td>
+                    <td><input type="date" id="txtFecNacE" name="txtFecNacE" class="empleado" /></td>
+                </tr>
+                <tr>
+                    <td class="tdlabel"><label>DPI:</label></td>
+                    <td><input type="text" id="txtDpi" name="txtDpi" class="empleado" /></td>
+                </tr>
+                <tr>
+                    <td class="tdlabel"><label>Clínica asignada:</label></td>
+                    <td>
+                        <select id="cbClinica" name="cbClinica" class="empleado">
+                            <option value="0">-- Selecione una opcion --</option>
+                            <option value="1">Clinca A</option>
+                            <option value="2">Clinica B</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="tdlabel"><label>Puesto:</label></td>
+                    <td>
+                        <select id="cbPuesto" name="cbPuesto" class="empleado">
+                            <option value="0">-- Selecione una opcion --</option>
+                            <option value="1">Medico</option>
+                            <option value="2">Asistente</option>
+                            <option value="2">Recepcionista</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td><input type="submit" id="btnAceptar" name="btnAceptar" value="Guardar" /></td>
+                </tr>
+            </table>
+        </form>
+    </div>
+</div>
+

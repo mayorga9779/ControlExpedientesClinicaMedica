@@ -25,8 +25,21 @@
             height: 14%;
             border-bottom: solid thin;
             border-color: darkgray;
+            /*background-image:url('img/fondo_login_3.jpg');
+            background-repeat:no-repeat;
+            background-size:cover;
+            background-position:center;*/
         }
-
+        #divLogo{
+            float: left;
+            width: 8%;
+            height: 100%;
+            background-image:url('img/logo_diente.jpg');
+            background-repeat:no-repeat;
+            background-size:cover;
+            background-position:center;
+            margin-left: 7%;
+        }
         #divContenido {
             position: relative;
             float: left;
@@ -50,7 +63,7 @@
             position: relative;
             float: left;
             margin-left: 10px;
-            width: 79%;
+            width: 76%;
             height: 100%;
             //background-color: #566f82;
         }
@@ -87,7 +100,7 @@
         }
         ul li label {
             display:block;
-            padding:12px;
+            padding:8px;
             width:100%;
         }
         ul li i {
@@ -128,12 +141,13 @@
             border-bottom:1px solid #2799db;
             background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#44c6eb), to(#2799db));
             background: -webkit-linear-gradient(top, #44c6eb, #2799db);
-            background: -moz-linear-gradient(top, #44c6eb, #2799db);
-            background: -ms-linear-gradient(top, #44c6eb, #2799db);
+            /*background: -moz-linear-gradient(top, #44c6eb, #2799db);    //aqui se cambia el color de los encabezados del menu*/
+            background: -moz-linear-gradient(top, #566f82, #1A1A1A);
+            background: -ms-linear-gradient(top, #404040, #2799db);
             background: -o-linear-gradient(top, #44c6eb, #2799db);
         }
         ul li input[type='checkbox']:checked ~ label span {
-            background: #2173a1; // fallback colour
+            background: #2173a1; 
             border-top:1px solid #1b5f85;
             border-bottom:1px solid #4cb1e4;
             -moz-box-shadow: inset 0 0 5px #111;
@@ -147,10 +161,13 @@
             max-height:400px;
         }
         ul ul {
-            background:#fff; margin:0; padding:0;
+            background:#e4e4e4;     //color de fondo del menu
+            margin:0; 
+            padding:0;
             -moz-box-shadow: inset 0 2px 2px #b3b3b3;
             -webkit-box-shadow: inset 0 2px 2px #b3b3b3;
             box-shadow: inner 0 2px 2px #b3b3b3;
+            font-size:  medium;
         }
         ul ul li a {
             display:block;
@@ -159,7 +176,9 @@
             text-decoration:none;
         }
         ul ul li a:hover {
-            color:#44c6eb;
+            color:#505050;
+            font-size: large;
+            background: -moz-linear-gradient(top, darkgray, #5DB1E0); //esto es nuevo
         }
         ul ul li a span {
             color:#999;
@@ -183,11 +202,19 @@
             display: block;
             overflow: hidden;
         }
+        #btnFinSesion{
+            width: 100%;
+            height: 50px;
+            text-align:center;
+            //background-color: red;
+        }
     </style>
 </head>
 <body>
     <div id="divEncabezado">
+        <div id="divLogo">
 
+        </div>
     </div>
     <div id="divContenido">
         <div id="divMenu">
@@ -216,32 +243,40 @@
                 </li>*@
                 <li class="block">
                     <input type="checkbox" name="item" id="item2" />
-                    <label for="item2"><i aria-hidden="true" class="icon-film"></i> Procesos <span>1,034</span></label>
+                    <label for="item2"><i aria-hidden="true" class="icon-film"></i> Procesos </label>
                     <ul class="options">
-                        <li><a href="#"><i aria-hidden="true" class="icon-movie"></i> Proceso 1 <span>7</span></a></li>
-                        <li><a href="#"><i aria-hidden="true" class="icon-download"></i> Proceso 1 <span>3</span></a></li>
-                        <li><a href="#"><i aria-hidden="true" class="icon-warning"></i> Proceso 1 <span>1,024</span></a></li>
+                        <li><a href="/Empleado/NuevoEmpleado"><i aria-hidden="true" class="icon-movie"></i>Creación de empleados</a></li>
+                        <li><a href="/Paciente/NuevoPaciente"><i aria-hidden="true" class="icon-warning"></i>Cración de pacientes </a></li>
+                        <li><a href="#"><i aria-hidden="true" class="icon-warning"></i>Cración de expedientes </a></li>
+                        <li><a href="#"><i aria-hidden="true" class="icon-download"></i>Creación de citas </a></li>
                     </ul>
                 </li>
                 <li class="block">
                     <input type="checkbox" name="item" id="item3" />
-                    <label for="item3"><i aria-hidden="true" class="icon-images"></i> Reportes <span>4</span></label>
+                    <label for="item3"><i aria-hidden="true" class="icon-images"></i> Reportes </label>
                     <ul class="options">
-                        <li><a href="http://gattkins.deviantart.com/" target="_blank"><i aria-hidden="true" class="icon-deviantart"></i> Reporte 1</a></li>
-                        <li><a href="http://dribbble.com/" target="_blank"><i aria-hidden="true" class="icon-dribbble"></i> Reporte 2</a></li>
-                        <li><a href="http://www.flickr.com/groups/catching_sun/pool/" target="_blank"><i aria-hidden="true" class="icon-flickr"></i> Reporte 3</a></li>
-                        <li><a href="https://picasaweb.google.com/lh/explore#utm_medium=embed&utm_source=pwalogin" target="_blank"><i aria-hidden="true" class="icon-picassa"></i> Reporte 4</a></li>
+                        <li><a href="http://gattkins.deviantart.com/" target="_blank"><i aria-hidden="true" class="icon-deviantart"></i> Consulta de expediente médico</a></li>
+                        <li><a href="http://dribbble.com/" target="_blank"><i aria-hidden="true" class="icon-dribbble"></i> Reporte de pacientes</a></li>
+                        <li><a href="http://www.flickr.com/groups/catching_sun/pool/" target="_blank"><i aria-hidden="true" class="icon-flickr"></i> Reporte de medicos</a></li>
+                        <li><a href="https://picasaweb.google.com/lh/explore#utm_medium=embed&utm_source=pwalogin" target="_blank"><i aria-hidden="true" class="icon-picassa"></i> Reporte de citas</a></li>
                     </ul>
                 </li>
                 <li class="block">
                     <input type="checkbox" name="item" id="item4" />
-                    <label for="item4"><i aria-hidden="true" class="icon-microphone"></i> Mantenimientos <span>1</span></label>
+                    <label for="item4"><i aria-hidden="true" class="icon-microphone"></i> Mantenimientos </label>
                     <ul class="options">
-                        <li><a href="https://css-tricks.com/css-tricks-screencasts-now-on-itunes/" target="_blank"><i aria-hidden="true" class="icon-music"></i> Mantenimiento 1</a></li>
-                        <li><a href="https://css-tricks.com/css-tricks-screencasts-now-on-itunes/" target="_blank"><i aria-hidden="true" class="icon-music"></i> Mantenimiento 2</a></li>
+                        <li><a href="/Pais/NuevoPais"><i aria-hidden="true" class="icon-music"></i>Creación de países</a></li>
+                        <li><a href="/Departamento/NuevoDepartamento" target="_blank"><i aria-hidden="true" class="icon-music"></i>Creación de departamentos</a></li>
+                        <li><a href="/Clinica/NuevaClinica" ><i aria-hidden="true" class="icon-music"></i>Creación de clínicas</a></li>
+                        <li><a href="/Moneda/NuevaMoneda"><i aria-hidden="true" class="icon-music"></i>Creación de monedas</a></li>
+                        <li><a href="/Puesto/NuevoPuesto"><i aria-hidden="true" class="icon-music"></i>Creación de puestos</a></li>
+                        <li><a href="" ><i aria-hidden="true" class="icon-music"></i>Creación de usuarios</a></li>
+                        @*<li><a href="" ><i aria-hidden="true" class="icon-music"></i>Creación de roles</a></li>*@
+                        @*<li><a href="" ><i aria-hidden="true" class="icon-music"></i>Creación de permisos al sistema</a></li>*@
+                        @*<li><a href="" ><i aria-hidden="true" class="icon-music"></i>Crear catálogo de enfermedades</a></li>*@
                     </ul>
                 </li>
-                <li class="block">
+                @*<li class="block">
                     <input type="checkbox" name="item" id="item5" />
                     <label for="item5"><i aria-hidden="true" class="icon-android"></i> Configuracion <span>3</span></label>
                     <ul class="options">
@@ -249,12 +284,12 @@
                         <li><a href="http://en.wikipedia.org/wiki/Skynet_(Terminator)" target="_blank"><i aria-hidden="true" class="icon-cloud"></i> Configuracion 2</a></li>
                         <li><a href="http://en.wikipedia.org/wiki/Short_Circuit" target="_blank"><i aria-hidden="true" class="icon-reddit"></i> Configuracion 3</a></li>
                     </ul>
-                </li>
+                </li>*@
                 <li class="block">
                     <input type="checkbox" name="item" id="item6" />
-                    <label for="item6"><i aria-hidden="true" class="icon-android"></i> Sesion <span>3</span></label>
+                    <label for="item6"><i aria-hidden="true" class="icon-android"></i> Sesion </label>
                     <ul class="options">
-                        <li><a href="http://en.wikipedia.org/wiki/HAL_9000" target="_blank"><i aria-hidden="true" class="icon-eye"></i> Sesion 1</a></li>
+                        <li><input type="submit" id="btnFinSesion" name="btnFinSesion" value="Cerrar sesión" /></li>
                     </ul>
                 </li>
             </ul>

@@ -1,0 +1,72 @@
+﻿
+@{
+    ViewData["Title"] = "Departamentos";
+    Layout = "~/Views/Shared/_MasterPage.cshtml";
+}
+
+<style>
+    #divContenidoDepartamentos {
+        position: relative;
+        float: left;
+        width: 100%;
+        height: 100%;
+        //background-color:#808080;
+        overflow-x: auto;
+    }
+    #diviTitulo {
+        position: relative;
+        float: left;
+        width: 100%;
+        height: 10%;
+        //background-color:#000000;
+        text-align: center;
+        margin: 0;
+        color: #808080;
+    }
+    #tblContenido {
+        width: 30%;
+    }
+    #btnAceptar {
+        width: 125px;
+        height: 40px;
+    }
+    #txtDepartamento {
+        width: 200px;
+    }
+    #cbPais{
+        width: 200px;
+    }
+</style>
+
+<div id="divContenidoDepartamentos">
+    <div id="diviTitulo">
+        <h1>Creación de departamentos</h1>
+    </div>
+    <div id="divContenido">
+        <form>
+            <table id="tblContenido">
+                <tr>
+                    <td><label>Departamento:</label></td>
+                    <td><input type="text" id="txtDepartamento" name="txtDepartamento" /></td>
+                </tr>
+                <tr>
+                    <td>País:</td>
+                    <td>
+                        <select id="cbPais" name="cbPais">
+                            <option value="0">-- Selecione una opcion --</option>
+                            <option value="1">Guatemala</option>
+                            <option value="2">El Salvador</option>
+                            <option value="2">Honduras</option>
+                            <option value="2">Estados Unidos</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td><input type="submit" id="btnAceptar" name="btnAceptar" value="Guardar" /></td>
+                </tr>
+            </table>
+        </form>
+    </div>
+</div>
+

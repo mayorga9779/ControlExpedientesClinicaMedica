@@ -1,0 +1,72 @@
+﻿
+@{
+    ViewData["Title"] = "NuevaMoneda";
+    Layout = "~/Views/Shared/_MasterPage.cshtml";
+}
+
+<style>
+    #divContenidoMoneda {
+        position: relative;
+        float: left;
+        width: 100%;
+        height: 100%;
+        //background-color:#808080;
+        overflow-x: auto;
+    }
+
+    #diviTitulo {
+        position: relative;
+        float: left;
+        width: 100%;
+        height: 10%;
+        //background-color:#000000;
+        text-align: center;
+        margin: 0;
+        color: #808080;
+    }
+
+    #tblContenido {
+        width: 30%;
+    }
+
+    #btnAceptar {
+        width: 125px;
+        height: 40px;
+    }
+
+    #txtMoneda {
+        width: 200px;
+    }
+</style>
+
+<div id="divContenidoMoneda">
+    <div id="diviTitulo">
+        <h1>Creacion de monedas</h1>
+    </div>
+    <div id="divContenido">
+        <form>
+            <table id="tblContenido">
+                <tr>
+                    <td><label>Nombre moneda:</label></td>
+                    <td><input type="text" id="txtMoneda" name="txtMoneda" /></td>
+                </tr>
+                <tr>
+                    <td><label>Simbolo:</label></td>
+                    <td>
+                        <select id="cbMoneda" name="cbMoneda">
+                            <option value="0">-- Selecione una opcion --</option>
+                            <option value="1">QTZ(Q)</option>
+                            <option value="2">USD($)</option>
+                            <option value="2">EUR(€)</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td><input type="submit" id="btnAceptar" name="btnAceptar" value="Guardar" /></td>
+                </tr>
+            </table>
+        </form>
+    </div>
+</div>
+
