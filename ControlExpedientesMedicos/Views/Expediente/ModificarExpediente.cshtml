@@ -1,0 +1,200 @@
+﻿@{
+    ViewData["Title"] = "Expedientes";
+    Layout = "~/Views/Shared/_MasterPage.cshtml";
+}
+
+<style>
+    body{
+        font-family: sans-serif;
+    }
+    .tabs-container{
+        position:relative;
+        width: 100%;
+        //background:#808080;
+        margin:2em auto;
+    }
+    .tabs{
+        list-style: none;
+        padding-top: 0;
+        padding-bottom: 0;
+        padding-left: 0;
+        display: flex;
+        border: 0;
+    }
+    .tabs_item{
+        border: 1px solid #ccc;
+        border-bottom: none;
+        line-height: 2.5;
+        padding: 0 1em;
+        margin-right: 1px;
+        background: #eee;
+        border-radius: 5px 5px 0 0;
+        position:relative;
+        top: 1px;
+        z-index: 0;
+        cursor: pointer;    /*es para que aparezca una manita sobre la pestania*/
+        //width: 13%;
+    }
+    .liActivo{
+        //background: #539ebf;
+        background: #ffd800;
+        z-index: 20;
+    }
+    /*.active{
+        background: #0094ff;
+        z-index: 20;
+    }*/
+    .panels{
+        border: 1px solid #ccc;
+        border-radius: 0px 0px 20px 20px;
+        padding: 1em;
+        position: relative;
+        z-index: 10;
+    }
+    .panels_item{
+        position:absolute;
+        width: 100%;
+        height: 100%;
+        left: -1000%;
+    }
+    .panels_item.active{
+        position:relative;
+        left: 0;
+    }
+
+</style>
+
+<div id="diviTitulo">
+    <h1>Modificacion de expediente medico</h1>
+</div>
+<div class="tabs-container">
+    <ul class="tabs" id="tabs">
+        <li class="tabs_item active liActivo">Informacion personal</li>
+        <li class="tabs_item">Citas</li>
+        <li class="tabs_item">Documentos</li>
+        <li class="tabs_item">Consultas</li>
+        <li class="tabs_item">Estado de cuenta</li>
+    </ul>
+    <div class="panels">
+        <div class="panels_item active pnlActivo">
+            <table id="tblPaciente">
+                <tr>
+                    <td><label>Expediente No.:</label></td>
+                    <td><input type="text" /></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><label>Titulo:</label></td>
+                    <td><input type="text" /></td>
+                    <td></td>
+                    <td rowspan="11"><img src="https://www.hazunaweb.com/imagenes/prueba.jpg" border="1" alt="Este es el ejemplo de un texto alternativo" width="200" height="250"></td>
+                </tr>
+                <tr>
+                    <td><label>Nombre del paciente:</label></td>
+                    <td><input type="text" /></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><label>Apellidos del paciente:</label></td>
+                    <td><input type="text" /></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><label>Domicilio:</label></td>
+                    <td><input type="text" /></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><label>Telefono:</label></td>
+                    <td><input type="text" /></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><label>Fecha de nacimiento:</label></td>
+                    <td><input type="text" /></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><label>No. de seguro social:</label></td>
+                    <td><input type="text" /></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><label>Genero:</label></td>
+                    <td>
+                        <select id="cbGenero" name="cbGenero" class="paciente">
+                            <option value="0">-- Selecione una opcion --</option>
+                            <option value="1">Hombre</option>
+                            <option value="2">Mujer</option>
+                        </select>
+                    </td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><label>Correo electronico:</label></td>
+                    <td><input type="text" /></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><label>Expediente No.:</label></td>
+                    <td><input type="text" /></td>
+                    <td></td>
+                    <td></td>
+
+                </tr>
+            </table>
+            <hr />
+            <div class="grid">
+                <!-- contenedor -->
+                <div class="a">Item 1</div> <!-- cada uno de los ítems del grid -->
+                <div class="b">Item 2</div>
+                <div class="c">Item 3</div>
+                <div class="d">Item 4</div>
+            </div>
+        </div>
+        <div class="panels_item">
+            <h2>Opcion 2</h2>
+            <p>ESTA ES UNA PRUEBA CEROTE</p>
+        </div>
+        <div class="panels_item">
+            <h2>Opcion 3</h2>
+            <p>ESTA ES UNA PRUEBA CEROTE</p>
+        </div>
+        <div class="panels_item">
+            <h2>Opcion 4</h2>
+            <p>ESTA ES UNA PRUEBA CEROTE</p>
+        </div>
+        <div class="panels_item">
+            <h2>Opcion 5</h2>
+            <p>ESTA ES UNA PRUEBA CEROTE</p>
+        </div>
+    </div>
+</div>
+<script>
+    (function (d) {
+        let tabs = Array.prototype.slice.apply(d.querySelectorAll('.tabs_item'));   //convierto los tabs en un array de tabs, el query selectorall no devuelve un arrar
+        let panels = Array.prototype.slice.apply(d.querySelectorAll('.panels_item'));    //el query selectorall no devuelve un arrar
+
+        d.getElementById('tabs').addEventListener('click', function (e) {
+            if (e.target.classList.contains('tabs_item')) { //valido que lo que se clickea sea la pestania y no el contenedor
+                //alert('clickea la pestania');
+                let i = tabs.indexOf(e.target);
+                //map es un metodo de cualquier array que permite recorrerlo sin hacer un ciclo, y a cada uno de los elementos hacerles una modificacion y devuelve un nuevo array
+                tabs.map(tab => tab.classList.remove('liActivo'));
+                tabs[i].classList.add('liActivo');
+
+                panels.map(panel => panel.classList.remove('active'));
+                panels[i].classList.add('active');
+            }
+        });
+    })(document)
+</script>
