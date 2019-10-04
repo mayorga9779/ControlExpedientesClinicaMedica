@@ -1,45 +1,51 @@
 ﻿
 @{
-    ViewData["Title"] = "";
+    ViewData["Title"] = "Clinica";
     Layout = "~/Views/Shared/_MasterPage.cshtml";
 }
 
-<style>
-    #divContenidoDepartamentos {
-        position: relative;
-        float: left;
-        width: 100%;
-        height: 100%;
-        //background-color:#808080;
-        overflow-x: auto;
-    }
+<!DOCTYPE html>
+<html lang="es-gt">
+<head>
+    <title>Clinica</title>
 
-    #diviTitulo {
-        position: relative;
-        float: left;
-        width: 100%;
-        height: 10%;
-        //background-color:#000000;
-        text-align: center;
-        margin: 0;
-        color: #808080;
-    }
+    <style>
+        #divContenidoDepartamentos {
+            position: relative;
+            float: left;
+            width: 100%;
+            height: 100%;
+            overflow-x: auto;
+        }
 
-    #tblContenido {
-        width: 75%;
-    }
+        #diviTitulo {
+            position: relative;
+            float: left;
+            width: 100%;
+            height: 10%;
+            text-align: center;
+            margin: 0;
+            color: #808080;
+        }
 
-    #btnAceptar {
-        width: 125px;
-        height: 40px;
-    }
-    .clinica{
-        width: 200px;
-    }
-    .tdlabel{
-        width: 150px;
-    }
-</style>
+        #tblContenido {
+            width: 75%;
+        }
+
+        #btnAceptar {
+            width: 125px;
+            height: 40px;
+        }
+
+        .clinica {
+            width: 200px;
+        }
+
+        .tdlabel {
+            width: 150px;
+        }
+    </style>
+</head>
 
 <div id="divContenidoClinica">
     <div id="diviTitulo">
@@ -58,19 +64,19 @@
                 </tr>
                 <tr>
                     <td class="tdlabel"><label>Dirección:</label></td>
-                    <td><input type="text" id="txtClinica" name="txtClinica" class="clinica" /></td>
+                    <td><input type="text" id="txtDireccionClinica" name="txtDireccionClinica" class="clinica" /></td>
                 </tr>
                 <tr>
                     <td class="tdlabel"><label>No. teléfono:</label></td>
-                    <td><input type="tel" id="txtClinica" name="txtClinica" class="clinica" /></td>
+                    <td><input type="tel" id="txtTelefonoClinica" name="txtTelefonoClinica" class="clinica" /></td>
                 </tr>
                 <tr>
                     <td class="tdlabel"><label>Correo electrónico:</label></td>
-                    <td><input type="email" id="txtClinica" name="txtClinica" class="clinica" /></td>
+                    <td><input type="email" id="txtEmailClinica" name="txtEmailClinica" class="clinica" /></td>
                 </tr>
                 <tr>
                     <td class="tdlabel"><label>Sitio web:</label></td>
-                    <td><input type="text" id="txtClinica" name="txtClinica" class="clinica" /></td>
+                    <td><input type="text" id="txtSitioWeb" name="txtSitioWeb" class="clinica" /></td>
                 </tr>
                 <tr>
                     <td></td>
@@ -80,4 +86,8 @@
         </form>
     </div>
 </div>
+</html>
+
+
+
 

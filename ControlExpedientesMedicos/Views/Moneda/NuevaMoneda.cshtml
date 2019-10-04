@@ -1,43 +1,47 @@
 ﻿
 @{
-    ViewData["Title"] = "NuevaMoneda";
+    ViewData["Title"] = "Monedas";
     Layout = "~/Views/Shared/_MasterPage.cshtml";
 }
 
-<style>
-    #divContenidoMoneda {
-        position: relative;
-        float: left;
-        width: 100%;
-        height: 100%;
-        //background-color:#808080;
-        overflow-x: auto;
-    }
+<!DOCTYPE html>
+<html lang="es-gt">
+<head>
+    <title>Monedas</title>
 
-    #diviTitulo {
-        position: relative;
-        float: left;
-        width: 100%;
-        height: 10%;
-        //background-color:#000000;
-        text-align: center;
-        margin: 0;
-        color: #808080;
-    }
+    <style>
+        #divContenidoMoneda {
+            position: relative;
+            float: left;
+            width: 100%;
+            height: 100%;
+            overflow-x: auto;
+        }
 
-    #tblContenido {
-        width: 30%;
-    }
+        #diviTitulo {
+            position: relative;
+            float: left;
+            width: 100%;
+            height: 10%;
+            text-align: center;
+            margin: 0;
+            color: #808080;
+        }
 
-    #btnAceptar {
-        width: 125px;
-        height: 40px;
-    }
+        #tblContenido {
+            width: 30%;
+        }
 
-    #txtMoneda {
-        width: 200px;
-    }
-</style>
+        #btnAceptar {
+            width: 125px;
+            height: 40px;
+        }
+
+        #txtMoneda {
+            width: 200px;
+        }
+    </style>
+</head>
 
 <div id="divContenidoMoneda">
     <div id="diviTitulo">
@@ -69,4 +73,9 @@
         </form>
     </div>
 </div>
+</html>
+
+
+
+
 

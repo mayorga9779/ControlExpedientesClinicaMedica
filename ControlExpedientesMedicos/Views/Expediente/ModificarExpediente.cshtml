@@ -3,158 +3,150 @@
     Layout = "~/Views/Shared/_MasterPage.cshtml";
 }
 
-@*<link rel="stylesheet" href="jquery.skeduler.css">
-    <script src="//code.jquery.com/jquery-3.1.0.slim.min.js"></script>
-    <script src="jquery.skeduler.js"></script>*@
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" />
-<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.11/css/jquery.dataTables.css">
-<script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.11/js/jquery.dataTables.js"></script>
+<!DOCTYPE html>
+<html lang="es-gt">
+<head>
+    <title>Expedientes</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.11/css/jquery.dataTables.css">
+    <script src="//cdn.datatables.net/1.10.11/js/jquery.dataTables.js"></script>
 
+    <style>
+        #divContenidoExpediente {
+            position: relative;
+            float: left;
+            width: 100%;
+            height: 100%;
+            overflow-x: auto;
+        }
 
-<style>
-    #divContenidoExpediente {
-        position: relative;
-        float: left;
-        width: 100%;
-        height: 100%;
-        //background-color:#808080;
-        overflow-x: auto;
-    }
+        .diviTitulo {
+            position: relative;
+            float: left;
+            width: 100%;
+            height: 10%;
+            text-align: center;
+            margin: 0;
+            color: #808080;
+            margin-bottom: 20px;
+        }
 
-    #diviTitulo {
-        position: relative;
-        float: left;
-        width: 100%;
-        height: 10%;
-        //background-color:#000000;
-        text-align: center;
-        margin: 0;
-        color: #808080;
-        margin-bottom: 20px;
-    }
+        #tblExpediente_Paciente {
+            width: 100%;
+        }
 
-    #tblExpediente_Paciente {
-        width: 100%;
-    }
+        #tblExpediente_Cita {
+            width: 42%;
+        }
 
-    #tblExpediente_Cita {
-        width: 42%;
-    }
+        #btnAceptarCita, #btnAceptarPaciente, #btnAceptarConsulta {
+            width: 125px;
+            height: 40px;
+        }
 
-    #btnAceptarCita, #btnAceptarPaciente, #btnAceptarConsulta {
-        width: 125px;
-        height: 40px;
-    }
+        .expediente, .paciente {
+            width: 200px;
+        }
 
-    .expediente, .paciente {
-        width: 200px;
-    }
+        .tdlabel {
+            width: 250px;
+        }
 
-    .tdlabel {
-        width: 250px;
-    }
+        .txtInput, .cita {
+            width: 225px;
+        }
 
-    .txtInput, .cita {
-        width: 225px;
-    }
+        .tdlabelCita {
+            width: 90px;
+        }
 
-    .tdlabelCita {
-        width: 90px;
-    }
+        #divListadoConsultas {
+            position: relative;
+            float: left;
+            width: 40%;
+        }
 
-    #divListadoConsultas{
-        position:relative;
-        float:left;
-        width:40%;
-        /*border: 1px solid #ccc;
-        border-radius: 5px 5px 5px 5px;*/
-    }
-    #divResumenConsultas{
-        position:relative;
-        margin-left: 20px;
-        float:left;
-        width:55%;
-        border: 1px solid #ccc;
-        border-radius: 5px 5px 5px 5px;
-    }
-    /*CODIGO CSS PARA LAS TABS*/
-    body {
-        font-family: sans-serif;
-    }
+        #divResumenConsultas {
+            position: relative;
+            margin-left: 20px;
+            float: left;
+            width: 55%;
+            border: 1px solid #ccc;
+            border-radius: 5px 5px 5px 5px;
+        }
+        /*CODIGO CSS PARA LAS TABS*/
+        body {
+            font-family: sans-serif;
+        }
 
-    .tabs-container {
-        position: relative;
-        width: 100%;
-        //background:#808080;
-        margin: 2em auto;
-    }
+        .tabs-container {
+            position: relative;
+            width: 100%;
+            margin: 2em auto;
+        }
 
-    .tabs {
-        list-style: none;
-        padding-top: 0;
-        padding-bottom: 0;
-        padding-left: 0;
-        display: flex;
-        border: 0;
-    }
+        .tabs {
+            list-style: none;
+            padding-top: 0;
+            padding-bottom: 0;
+            padding-left: 0;
+            display: flex;
+            border: 0;
+        }
 
-    .tabs_item {
-        border: 1px solid #ccc;
-        border-bottom: none;
-        line-height: 2.5;
-        padding: 0 1em;
-        margin-right: 1px;
-        background: #eee;
-        border-radius: 5px 5px 0 0;
-        position: relative;
-        top: 1px;
-        z-index: 0;
-        cursor: pointer; /*es para que aparezca una manita sobre la pestania*/
-        //width: 13%;
-    }
+        .tabs_item {
+            border: 1px solid #ccc;
+            border-bottom: none;
+            line-height: 2.5;
+            padding: 0 1em;
+            margin-right: 1px;
+            background: #eee;
+            border-radius: 5px 5px 0 0;
+            position: relative;
+            top: 1px;
+            z-index: 0;
+            cursor: pointer;
+        }
 
-    .liActivo {
-        //background: #539ebf;
-        background: #ffd800;
-        z-index: 20;
-    }
-    /*.active{
-        background: #0094ff;
-        z-index: 20;
-    }*/
-    .panels {
-        border: 1px solid #ccc;
-        border-radius: 0px 0px 20px 20px;
-        padding: 1em;
-        position: relative;
-        z-index: 10;
-    }
+        .liActivo {
+            background: #ffd800;
+            z-index: 20;
+        }
 
-    .panels_item {
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        left: -1000%;
-    }
+        .panels {
+            border: 1px solid #ccc;
+            border-radius: 0px 0px 20px 20px;
+            padding: 1em;
+            position: relative;
+            z-index: 10;
+        }
 
-    .panels_item.active {
-        position: relative;
-        left: 0;
-    }
-</style>
+        .panels_item {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            left: -1000%;
+        }
 
-<div id="diviTitulo">
+            .panels_item.active {
+                position: relative;
+                left: 0;
+            }
+    </style>
+</head>
+
+<div class="diviTitulo">
     <h1>Modificacion de expediente medico</h1>
 </div>
 <div class="tabs-container">
     <ul class="tabs" id="tabs">
         <li class="tabs_item active liActivo">Informacion personal</li>
         <li class="tabs_item">Citas</li>
-        @*<li class="tabs_item">Documentos</li>*@
+        <!--<li class="tabs_item">Documentos</li>-->
         <li class="tabs_item">Consultas</li>
-        @*<li class="tabs_item">Estado de cuenta</li>*@
+        <!--<li class="tabs_item">Estado de cuenta</li>-->
     </ul>
     <div class="panels">
         @*PANEL DE INFORMACION PERSONAL*@
@@ -164,12 +156,14 @@
                     <td class="tdlabel"><label>Expediente No.:</label></td>
                     <td style="width: 300px;"><input type="text" id="txtNoExpediente" name="txtNoExpediente" class="expediente" /></td>
                     <td style="width: 100px;" class="tdlabel"><label></label></td>
-                    <td rowspan="8"><img src="~/img/user.png" border="1" width="200" height="250"></td>
+                    <td rowspan="6"><img src="~/img/user.png" alt="" width="200" height="250"></td>
+                    <td></td>
                 </tr>
                 <tr>
                     <td class="tdlabel"><label>Titulo:</label></td>
                     <td><input type="text" id="txtTitulo" name="txtTitulo" class="expediente" /></td>
                     <td style="width: 25px; text-align:right;"><label>Agregar</label></td>
+                    <td></td>
                     <td></td>
                 </tr>
                 <tr>
@@ -177,10 +171,12 @@
                     <td><input type="text" id="txtNombrePaciente" name="txtNombrePaciente" class="expediente" /></td>
                     <td style="width: 25px; text-align:right;"><label>Eliminar</label></td>
                     <td></td>
+                    <td></td>
                 </tr>
                 <tr>
                     <td class="tdlabel"><label>Apellidos del paciente:</label></td>
                     <td><input type="text" id="txtApellidosPaciente" name="txtApellidosPaciente" class="expediente" /></td>
+                    <td></td>
                     <td></td>
                     <td></td>
                 </tr>
@@ -191,10 +187,12 @@
                     </td>
                     <td></td>
                     <td></td>
+                    <td></td>
                 </tr>
                 <tr>
                     <td class="tdlabel"><label>Telefono:</label></td>
                     <td><input type="text" id="txtTelefono" name="txtTelefono" class="expediente" /></td>
+                    <td></td>
                     <td></td>
                     <td></td>
                 </tr>
@@ -203,10 +201,12 @@
                     <td><input type="date" id="txtFechaNacimiento" name="txtFechaNacimiento" class="expediente" /></td>
                     <td></td>
                     <td></td>
+                    <td></td>
                 </tr>
                 <tr>
                     <td class="tdlabel"><label>No. de seguro social:</label></td>
                     <td><input type="text" id="txtSeguroSocial" name="txtSeguroSocial" class="expediente" /></td>
+                    <td></td>
                     <td></td>
                     <td></td>
                 </tr>
@@ -221,16 +221,19 @@
                     </td>
                     <td></td>
                     <td></td>
+                    <td></td>
                 </tr>
                 <tr>
                     <td class="tdlabel"><label>Correo electronico:</label></td>
                     <td><input type="text" id="txtEmail" name="txtEmail" class="expediente" /></td>
                     <td></td>
                     <td></td>
+                    <td></td>
                 </tr>
                 <tr>
                     <td></td>
                     <td><input type="submit" id="btnAceptarPaciente" name="btnAceptarPaciente" value="Guardar" /></td>
+                    <td></td>
                     <td></td>
                     <td></td>
                 </tr>
@@ -267,9 +270,9 @@
         </div>
         @*PANEL DE DOCUMENTOS*@
         @*<div class="panels_item">
-            <h2>Opcion 3</h2>
-            <p>ESTA ES UNA PRUEBA </p>
-        </div>*@
+                <h2>Opcion 3</h2>
+                <p>ESTA ES UNA PRUEBA </p>
+            </div>*@
         @*PANEL DE CONSULTAS*@
         <div class="panels_item">
             <table>
@@ -291,7 +294,7 @@
                 </tr>
             </table>
             <hr />
-            <div id="diviTitulo">
+            <div class="diviTitulo">
                 <h1>Listado de consultas</h1>
             </div>
             <div id="divListadoConsultas">
@@ -321,15 +324,15 @@
                 <table>
                     <tr>
                         <td><label>Consulta:</label></td>
-                        <td><textarea cols="100" rows="5" id="taMotivo" name="taMotivo"></textarea></td>
+                        <td><textarea cols="100" rows="5" id="taConsulta2" name="taConsulta2"></textarea></td>
                     </tr>
                     <tr>
                         <td><label>Sintomas:</label></td>
-                        <td><textarea cols="100" rows="5" id="taSintomas" name="taSintomas"></textarea></td>
+                        <td><textarea cols="100" rows="5" id="taSintomas2" name="taSintomas2"></textarea></td>
                     </tr>
                     <tr>
                         <td><label>Diagnostico:</label></td>
-                        <td><textarea cols="100" rows="5" id="taDiagnostico" name="taDiagnostico"></textarea></td>
+                        <td><textarea cols="100" rows="5" id="taDiagnostico2" name="taDiagnostico2"></textarea></td>
                     </tr>
                 </table>
             </div>
@@ -337,9 +340,9 @@
 
         @*PANEL DE ESTADO DE CUENTA*@
         @*<div class="panels_item">
-            <h2>Opcion 5</h2>
-            <p>ESTA ES UNA PRUEBA</p>
-        </div>*@
+                <h2>Opcion 5</h2>
+                <p>ESTA ES UNA PRUEBA</p>
+            </div>*@
     </div>
 </div>
 @*SCRIPT QUE ME SIRVE PARA MANEJAR LOS CLICK CON LAS PESTANIAS*@
@@ -366,3 +369,13 @@
         $('#grid').DataTable();
     });
 </script>
+
+</html>
+
+
+
+
+
+
+
+
