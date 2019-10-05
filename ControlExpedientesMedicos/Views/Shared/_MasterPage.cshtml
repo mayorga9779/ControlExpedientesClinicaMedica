@@ -1,79 +1,85 @@
 ﻿<!DOCTYPE html>
 
-<html lang="hr">
-    <head>
-        <meta name="viewport" content="width=device-width" />
-        <title>@ViewBag.Title</title>
+<html lang="es-gt">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
 
-        <style>
-            html, body {
-                position: relative;
-                height: 100%;
-                width: 100%;
-                margin: 0;
-                padding: 0;
-                font-family: sans-serif;
-            }
+    <style>
+        html, body {
+            position: relative;
+            height: 100%;
+            width: 100%;
+            margin: 0;
+            padding: 0;
+            font-family: sans-serif;
+        }
 
-            #divEncabezado {
-                position: relative;
-                float: left;
-                width: 100%;
-                height: 14%;
-                border-bottom: solid thin;
-                border-color: darkgray;
-            }
-            #divLogo{
-                float: left;
-                width: 8%;
-                height: 100%;
-                background-image:url('img/logo_diente.jpg');
-                background-repeat:no-repeat;
-                background-size:cover;
-                background-position:center;
-                margin-left: 7%;
-            }
-            #divContenido {
-                position: relative;
-                float: left;
-                width: 100%;
-                height: 81%;
-            }
+        #divEncabezado {
+            position: relative;
+            float: left;
+            width: 100%;
+            height: 14%;
+            border-bottom: solid thin;
+            border-color: darkgray;
+        }
 
-            #divMenu {
-                position: relative;
-                float: left;
-                width: 20%;
-                height: 100%;
-                border-right: solid thin;
-                border-color: darkgray;
-                overflow-y: auto;
-                margin-left: 5px;
-            }
+        #divLogo {
+            float: left;
+            width: 8%;
+            height: 100%;
+            background-image: url('img/logo_diente.jpg');
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center;
+            margin-left: 7%;
+        }
 
-            #divPagina {
-                position: relative;
-                float: left;
-                margin-left: 10px;
-                width: 76%;
-                height: 100%;
-            }
-            * {
-                -webkit-box-sizing: border-box;
-                -moz-box-sizing: border-box;
-                box-sizing: border-box;
-            }
-            ul {
-                list-style:none;
-                margin:0;
-                padding:0;
-                width:100%;
-                margin:0 auto;
-            }
+        #divContenido {
+            position: relative;
+            float: left;
+            width: 100%;
+            height: 81%;
+        }
+
+        #divMenu {
+            position: relative;
+            float: left;
+            width: 20%;
+            height: 100%;
+            border-right: solid thin;
+            border-color: darkgray;
+            overflow-y: auto;
+            margin-left: 5px;
+        }
+
+        #divPagina {
+            position: relative;
+            float: left;
+            margin-left: 10px;
+            width: 76%;
+            height: 100%;
+        }
+
+        * {
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+        }
+
+        ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            margin: 0 auto;
+        }
+
             ul li label {
                 background: #575e63;
-                border-top:1px solid #878e98;
-                border-bottom:1px solid #33373d;
+                border-top: 1px solid #878e98;
+                border-bottom: 1px solid #33373d;
                 color: #fff;
                 text-shadow: 0 1px 1px #000;
                 letter-spacing: 0.09em;
@@ -83,35 +89,40 @@
                 background: -ms-linear-gradient(top, #575e63, #3f4347);
                 background: -o-linear-gradient(top, #575e63, #3f4347);
             }
+
             ul li input[type='checkbox'] {
                 display: none;
             }
+
             ul li label {
-                display:block;
-                padding:8px;
-                width:100%;
+                display: block;
+                padding: 8px;
+                width: 100%;
             }
+
             ul li i {
-                font-size:18px;
+                font-size: 18px;
                 vertical-align: middle;
-                width:20px;
-                display:inline-block;
+                width: 20px;
+                display: inline-block;
             }
+
             ul li span {
-                display:inline;
-                float:right;
-                background:#48515c;
-                border:1px solid #3c434c;
-                border-bottom:1px solid #707781;
-                padding:4px 6px;
-                font-size:10px;
+                display: inline;
+                float: right;
+                background: #48515c;
+                border: 1px solid #3c434c;
+                border-bottom: 1px solid #707781;
+                padding: 4px 6px;
+                font-size: 10px;
                 -moz-border-radius: 12px;
                 border-radius: 12px;
                 -moz-box-shadow: inset 0 0 10px #111;
                 -webkit-box-shadow: inset 0 0 10px #111;
                 /*box-shadow: inner 0 0 10px #111;*/
-                position:relative;
+                position: relative;
             }
+
             ul li label:hover {
                 background: #566f82;
                 background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#566f82), to(#3e505e));
@@ -120,13 +131,15 @@
                 background: -ms-linear-gradient(top, #566f82, #3e505e);
                 background: -o-linear-gradient(top, #566f82, #3e505e);
             }
-            ul li label:hover span {
-                background:#3e505e;
-            }
+
+                ul li label:hover span {
+                    background: #3e505e;
+                }
+
             ul li input[type='checkbox']:checked ~ label {
                 background: #44c6eb;
-                border-top:1px solid #878e98;
-                border-bottom:1px solid #2799db;
+                border-top: 1px solid #878e98;
+                border-bottom: 1px solid #2799db;
                 background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#44c6eb), to(#2799db));
                 background: -webkit-linear-gradient(top, #44c6eb, #2799db);
                 /*background: -moz-linear-gradient(top, #44c6eb, #2799db);    //aqui se cambia el color de los encabezados del menu*/
@@ -134,160 +147,172 @@
                 background: -ms-linear-gradient(top, #404040, #2799db);
                 background: -o-linear-gradient(top, #44c6eb, #2799db);
             }
-            ul li input[type='checkbox']:checked ~ label span {
-                background: #2173a1; 
-                border-top:1px solid #1b5f85;
-                border-bottom:1px solid #4cb1e4;
-                -moz-box-shadow: inset 0 0 5px #111;
-                -webkit-box-shadow: inset 0 0 5px #111;
-                /*box-shadow: inner 0 0 5px #111;*/
-            }
+
+                ul li input[type='checkbox']:checked ~ label span {
+                    background: #2173a1;
+                    border-top: 1px solid #1b5f85;
+                    border-bottom: 1px solid #4cb1e4;
+                    -moz-box-shadow: inset 0 0 5px #111;
+                    -webkit-box-shadow: inset 0 0 5px #111;
+                    /*box-shadow: inner 0 0 5px #111;*/
+                }
+
             ul li input[type='checkbox']:checked ~ .options {
                 height: auto;
-                display:block;
-                min-height:40px;
-                max-height:400px;
+                display: block;
+                min-height: 40px;
+                max-height: 400px;
             }
+
             ul ul {
-                background:#e4e4e4;     
-                margin:0; 
-                padding:0;
+                background: #e4e4e4;
+                margin: 0;
+                padding: 0;
                 -moz-box-shadow: inset 0 2px 2px #b3b3b3;
                 -webkit-box-shadow: inset 0 2px 2px #b3b3b3;
                 /*box-shadow: inner 0 2px 2px #b3b3b3;*/
-                font-size:  medium;
+                font-size: medium;
             }
-            ul ul li a {
-                display:block;
-                padding:6px 12px;
-                color:#999;
-                text-decoration:none;
-            }
-            ul ul li a:hover {
-                color:#505050;
-                font-size: large;
-                background: -moz-linear-gradient(top, darkgray, #5DB1E0);
-            }
-            ul ul li a span {
-                color:#999;
-                background:none;
-                border:1px solid #ccc;
-                -moz-box-shadow: none;
-                -webkit-box-shadow: none;
-                box-shadow: none;
-            }
-            ul ul li {
-                border-bottom:1px solid #ccc;
-            }
-            ul ul li:first-child {
-                padding-top:6px;
-            }
-            ul ul li:last-child {
-                padding-bottom:6px; border:0;
-            }
-            .options {
-                height: 0;
-                display: block;
-                overflow: hidden;
-            }
-            #btnFinSesion{
-                width: 100%;
-                height: 50px;
-                text-align:center;
-            }
-        </style>
-    </head>
-    <body>
-        <div id="divEncabezado">
-            <div id="divLogo">
 
-            </div>
+                ul ul li a {
+                    display: block;
+                    padding: 6px 12px;
+                    color: #999;
+                    text-decoration: none;
+                }
+
+                    ul ul li a:hover {
+                        color: #505050;
+                        font-size: large;
+                        background: -moz-linear-gradient(top, darkgray, #5DB1E0);
+                    }
+
+                    ul ul li a span {
+                        color: #999;
+                        background: none;
+                        border: 1px solid #ccc;
+                        -moz-box-shadow: none;
+                        -webkit-box-shadow: none;
+                        box-shadow: none;
+                    }
+
+                ul ul li {
+                    border-bottom: 1px solid #ccc;
+                }
+
+                    ul ul li:first-child {
+                        padding-top: 6px;
+                    }
+
+                    ul ul li:last-child {
+                        padding-bottom: 6px;
+                        border: 0;
+                    }
+
+        .options {
+            height: 0;
+            display: block;
+            overflow: hidden;
+        }
+
+        #btnFinSesion {
+            width: 100%;
+            height: 50px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div id="divEncabezado">
+        <div id="divLogo">
+
         </div>
-        <div id="divContenido">
-            <div id="divMenu">
+    </div>
+    <div id="divContenido">
+        <div id="divMenu">
 
-                <div id="divUsuario">
-                    <table>
-                        <tr>
-                            <td>Usuario:</td>
-                            <td>EMAYORGA</td>
-                        </tr>
-                        <tr>
-                            <td>Servidor:</td>
-                            <td>DESARROLLO</td>
-                        </tr>
-                    </table>
-                </div>
-                <ul>
-                    <li class="block">
-                        <input type="checkbox" name="item" id="item1" />
-                        <label for="item1"><i aria-hidden="true" class="icon-users"></i> Consulstas <span>124</span></label>
-                        <ul class="options">
-                            <li><a href="#"><i aria-hidden="true" class="icon-search"></i> Consulta 1</a></li>
-                            <li><a href="#"><i aria-hidden="true" class="icon-point-right"></i> Consulta 2</a></li>
-                            <li><a href="#"><i aria-hidden="true" class="icon-fire"></i> Consulta 3</a></li>
-                        </ul>
-                    </li>
-                    <li class="block">
-                        <input type="checkbox" name="item" id="item2" />
-                        <label for="item2"><i aria-hidden="true" class="icon-film"></i> Procesos </label>
-                        <ul class="options">
-                            <li><a href="/Empleado/NuevoEmpleado"><i aria-hidden="true" class="icon-movie"></i>Creación de empleados</a></li>
-                            <li><a href="/Paciente/NuevoPaciente"><i aria-hidden="true" class="icon-warning"></i>Cración de pacientes</a></li>
-                            <li><a href="/Expediente/NuevoExpediente"><i aria-hidden="true" class="icon-warning"></i>Cración de expedientes</a></li>
-                            <li><a href="/Cita/NuevaCita"><i aria-hidden="true" class="icon-download"></i>Creación de citas</a></li>
-                            <li><a href="/Expediente/ModificarExpediente"><i aria-hidden="true" class="icon-download"></i>Modificación de expedientes médicos</a></li>
-                        </ul>
-                    </li>
-                    <li class="block">
-                        <input type="checkbox" name="item" id="item3" />
-                        <label for="item3"><i aria-hidden="true" class="icon-images"></i> Reportes </label>
-                        <ul class="options">
-                            <li><a href="/Expediente/ModificarExpediente" ><i aria-hidden="true" class="icon-deviantart"></i> Consulta de expediente médico</a></li>
-                            <li><a href="/Reportes/ReportePacientes" ><i aria-hidden="true" class="icon-dribbble"></i> Reporte de pacientes</a></li>
-                            <li><a href="/Reportes/ReporteMedicos" ><i aria-hidden="true" class="icon-flickr"></i> Reporte de medicos</a></li>
-                            <li><a href="/Reportes/ReporteCitas" ><i aria-hidden="true" class="icon-picassa"></i> Reporte de citas</a></li>
-                        </ul>
-                    </li>
-                    <li class="block">
-                        <input type="checkbox" name="item" id="item4" />
-                        <label for="item4"><i aria-hidden="true" class="icon-microphone"></i> Mantenimientos </label>
-                        <ul class="options">
-                            <li><a href="/Pais/NuevoPais"><i aria-hidden="true" class="icon-music"></i>Creación de países</a></li>
-                            <li><a href="/Departamento/NuevoDepartamento" target="_blank"><i aria-hidden="true" class="icon-music"></i>Creación de departamentos</a></li>
-                            <li><a href="/Clinica/NuevaClinica" ><i aria-hidden="true" class="icon-music"></i>Creación de clínicas</a></li>
-                            <li><a href="/Moneda/NuevaMoneda"><i aria-hidden="true" class="icon-music"></i>Creación de monedas</a></li>
-                            <li><a href="/Puesto/NuevoPuesto"><i aria-hidden="true" class="icon-music"></i>Creación de puestos</a></li>
-                            <li><a href="" ><i aria-hidden="true" class="icon-music"></i>Creación de usuarios</a></li>
-                            <li><a href="" ><i aria-hidden="true" class="icon-music"></i>Creación de roles</a></li>
-                            <li><a href="" ><i aria-hidden="true" class="icon-music"></i>Creación de permisos al sistema</a></li>
-                            <li><a href="" ><i aria-hidden="true" class="icon-music"></i>Crear catálogo de enfermedades</a></li>
-                        </ul>
-                    </li>
-                    <li class="block">
-                        <input type="checkbox" name="item" id="item5" />
-                        <label for="item5"><i aria-hidden="true" class="icon-android"></i> Configuracion <span>3</span></label>
-                        <ul class="options">
-                            <li><a href="" ><i aria-hidden="true" class="icon-eye"></i> Configuracion 1</a></li>
-                            <li><a href="" ><i aria-hidden="true" class="icon-cloud"></i> Configuracion 2</a></li>
-                            <li><a href="" ><i aria-hidden="true" class="icon-reddit"></i> Configuracion 3</a></li>
-                        </ul>
-                    </li>
-                    <li class="block">
-                        <input type="checkbox" name="item" id="item6" />
-                        <label for="item6"><i aria-hidden="true" class="icon-android"></i> Sesion </label>
-                        <ul class="options">
-                            <li><input type="submit" id="btnFinSesion" name="btnFinSesion" value="Cerrar sesión" /></li>
-                        </ul>
-                    </li>
-                </ul>
+            <div id="divUsuario">
+                <table>
+                    <tr>
+                        <td>Usuario:</td>
+                        <td>EMAYORGA</td>
+                    </tr>
+                    <tr>
+                        <td>Servidor:</td>
+                        <td>DESARROLLO</td>
+                    </tr>
+                </table>
             </div>
-            <div id="divPagina">
-                @RenderBody()
-            </div>
+            <ul>
+                <li class="block">
+                    <input type="checkbox" name="item" id="item1" />
+                    <label for="item1"><i aria-hidden="true" class="icon-users"></i> Consulstas <span>124</span></label>
+                    <ul class="options">
+                        <li><a href="#"><i aria-hidden="true" class="icon-search"></i> Consulta 1</a></li>
+                        <li><a href="#"><i aria-hidden="true" class="icon-point-right"></i> Consulta 2</a></li>
+                        <li><a href="#"><i aria-hidden="true" class="icon-fire"></i> Consulta 3</a></li>
+                    </ul>
+                </li>
+                <li class="block">
+                    <input type="checkbox" name="item" id="item2" />
+                    <label for="item2"><i aria-hidden="true" class="icon-film"></i> Procesos </label>
+                    <ul class="options">
+                        <li><a href="/Empleado/NuevoEmpleado"><i aria-hidden="true" class="icon-movie"></i>Creación de empleados</a></li>
+                        <li><a href="/Paciente/NuevoPaciente"><i aria-hidden="true" class="icon-warning"></i>Cración de pacientes</a></li>
+                        <li><a href="/Expediente/NuevoExpediente"><i aria-hidden="true" class="icon-warning"></i>Cración de expedientes</a></li>
+                        <li><a href="/Cita/NuevaCita"><i aria-hidden="true" class="icon-download"></i>Creación de citas</a></li>
+                        <li><a href="/Expediente/ModificarExpediente"><i aria-hidden="true" class="icon-download"></i>Modificación de expedientes médicos</a></li>
+                    </ul>
+                </li>
+                <li class="block">
+                    <input type="checkbox" name="item" id="item3" />
+                    <label for="item3"><i aria-hidden="true" class="icon-images"></i> Reportes </label>
+                    <ul class="options">
+                        <li><a href="/Expediente/ModificarExpediente"><i aria-hidden="true" class="icon-deviantart"></i> Consulta de expediente médico</a></li>
+                        <li><a href="/Reportes/ReportePacientes"><i aria-hidden="true" class="icon-dribbble"></i> Reporte de pacientes</a></li>
+                        <li><a href="/Reportes/ReporteMedicos"><i aria-hidden="true" class="icon-flickr"></i> Reporte de medicos</a></li>
+                        <li><a href="/Reportes/ReporteCitas"><i aria-hidden="true" class="icon-picassa"></i> Reporte de citas</a></li>
+                    </ul>
+                </li>
+                <li class="block">
+                    <input type="checkbox" name="item" id="item4" />
+                    <label for="item4"><i aria-hidden="true" class="icon-microphone"></i> Mantenimientos </label>
+                    <ul class="options">
+                        <li><a href="/Pais/NuevoPais"><i aria-hidden="true" class="icon-music"></i>Creación de países</a></li>
+                        <li><a href="/Departamento/NuevoDepartamento" target="_blank"><i aria-hidden="true" class="icon-music"></i>Creación de departamentos</a></li>
+                        <li><a href="/Clinica/NuevaClinica"><i aria-hidden="true" class="icon-music"></i>Creación de clínicas</a></li>
+                        <li><a href="/Moneda/NuevaMoneda"><i aria-hidden="true" class="icon-music"></i>Creación de monedas</a></li>
+                        <li><a href="/Puesto/NuevoPuesto"><i aria-hidden="true" class="icon-music"></i>Creación de puestos</a></li>
+                        <li><a href=""><i aria-hidden="true" class="icon-music"></i>Creación de usuarios</a></li>
+                        <li><a href=""><i aria-hidden="true" class="icon-music"></i>Creación de roles</a></li>
+                        <li><a href=""><i aria-hidden="true" class="icon-music"></i>Creación de permisos al sistema</a></li>
+                        <li><a href=""><i aria-hidden="true" class="icon-music"></i>Crear catálogo de enfermedades</a></li>
+                    </ul>
+                </li>
+                <li class="block">
+                    <input type="checkbox" name="item" id="item5" />
+                    <label for="item5"><i aria-hidden="true" class="icon-android"></i> Configuracion <span>3</span></label>
+                    <ul class="options">
+                        <li><a href=""><i aria-hidden="true" class="icon-eye"></i> Configuracion 1</a></li>
+                        <li><a href=""><i aria-hidden="true" class="icon-cloud"></i> Configuracion 2</a></li>
+                        <li><a href=""><i aria-hidden="true" class="icon-reddit"></i> Configuracion 3</a></li>
+                    </ul>
+                </li>
+                <li class="block">
+                    <input type="checkbox" name="item" id="item6" />
+                    <label for="item6"><i aria-hidden="true" class="icon-android"></i> Sesion </label>
+                    <ul class="options">
+                        <li><input type="submit" id="btnFinSesion" name="btnFinSesion" value="Cerrar sesión" /></li>
+                    </ul>
+                </li>
+            </ul>
         </div>
+        <div id="divPagina">
+            @RenderBody()
+        </div>
+    </div>
 
-        <script src="~/js/jquery-1.4.2.min.js"></script>
-        <script src="~/js/jquery.lksMenu.js"></script>
-    </body>
+    <script src="~/js/jquery-1.4.2.min.js"></script>
+    <script src="~/js/jquery.lksMenu.js"></script>
+</body>
 </html>

@@ -7,6 +7,7 @@
 
 <html lang="es-gt">
 <head>
+    <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
     <title>Login</title>
 
@@ -102,8 +103,8 @@
         }
 
         #btnIngresar {
-            width: 40%;
-            height: 80%;
+            width: 125px;
+            height: 40px;
         }
     </style>
 </head>
@@ -114,20 +115,22 @@
 
             </div>
             <div id="divControles">
-                <table id="tblLogin">
-                    <tr class="tr">
-                        <td class="td"><label>Usuario:</label></td>
-                        <td class="td"><input type="text" id="txtUsuario" name="txtUsuario" /></td>
-                    </tr>
-                    <tr class="tr">
-                        <td class="td"><label>Contraseña:</label></td>
-                        <td class="td"><input type="password" id="txtPassword" name="txtPassword" /></td>
-                    </tr>
-                    <tr class="tr">
-                        <td class="td"></td>
-                        <td class="td"><input type="submit" value="Ingresar" id="btnIngresar" name="btnIngresar" /></td>
-                    </tr>
-                </table>
+                <form action="/Login/Login" method="post">
+                    <table id="tblLogin">
+                        <tr class="tr">
+                            <td class="td"><label>Usuario:</label></td>
+                            <td class="td"><input type="text" id="txtUsuario" name="txtUsuario" autofocus /></td>
+                        </tr>
+                        <tr class="tr">
+                            <td class="td"><label>Contraseña:</label></td>
+                            <td class="td"><input type="password" id="txtPassword" name="txtPassword" /></td>
+                        </tr>
+                        <tr class="tr">
+                            <td class="td"></td>
+                            <td class="td"><input type="submit" value="Ingresar" id="btnIngresar" /></td>
+                        </tr>
+                    </table>
+                </form>
             </div>
             <div id="divMensajeLogin">
 
