@@ -7,7 +7,9 @@
 <!DOCTYPE html>
 <html lang="es-gt">
 <head>
-    <meta charset="UTF-8" />
+    @*<meta charset="UTF-8" />*@
+    <meta http-equiv="Content-Type" content="application/json; charset=UTF-8">
+    <script src="~/js/jquery-1.4.2.min.js"></script>
     <title>Empleados</title>
 
     <style>
@@ -47,6 +49,20 @@
             width: 200px;
         }
     </style>
+    <script>
+        //lleno el select de las clinicas
+        $.getJSON("/Clinica/ObtenerClinicas", { opcion: 1 }, function (respuesta_controlador) {
+            $.each(respuesta_controlador, function (key, value) {
+                $("#cbClinica").append("<option value='"+value.cli_codigo+"'>" + value.cli_nombre + "</option>");
+            });
+        });
+        //lleno el select de los puestos
+        $.getJSON("/Puesto/ObtenerPuestos", { opcion: 1 }, function (respuesta_controlador) {
+            $.each(respuesta_controlador, function (key, value) {
+                $("#cbPuesto").append("<option value='"+value.pue_codigo+"'>" + value.pue_nombre + "</option>");
+            });
+        });
+    </script>
 </head>
 
 <div id="divContenidoEmpleado">
@@ -78,7 +94,7 @@
                 </tr>
                 <tr>
                     <td class="tdlabel"><label>Fecha de nacimiento:</label></td>
-                    <td><!--<input type="date" id="txtFecNacE" name="txtFecNacE" class="empleado" />--></td>
+                    <td><input type="date" id="txtFecNacE" name="txtFecNacE" class="empleado" /></td>
                     <td></td>
                 </tr>
                 <tr>
@@ -91,8 +107,8 @@
                     <td>
                         <select id="cbClinica" name="cbClinica" class="empleado">
                             <option value="0">-- Selecione una opcion --</option>
-                            <option value="1">Clinca A</option>
-                            <option value="2">Clinica B</option>
+                            @*<option value="1">Clinca A</option>
+                            <option value="2">Clinica B</option>*@
                         </select>
                     </td>
                     <td></td>
@@ -102,9 +118,9 @@
                     <td>
                         <select id="cbPuesto" name="cbPuesto" class="empleado">
                             <option value="0">-- Selecione una opcion --</option>
-                            <option value="1">Medico</option>
+                            @*<option value="1">Medico</option>
                             <option value="2">Asistente</option>
-                            <option value="2">Recepcionista</option>
+                            <option value="2">Recepcionista</option>*@
                         </select>
                     </td>
                     <td></td>
