@@ -7,7 +7,6 @@
 <!DOCTYPE html>
 <html lang="es-gt">
 <head>
-    @*<meta charset="UTF-8" />*@
     <meta http-equiv="Content-Type" content="application/json; charset=UTF-8">
     <script src="~/js/jquery-1.4.2.min.js"></script>
     <title>Empleados</title>
@@ -49,17 +48,43 @@
             width: 200px;
         }
     </style>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.11.4/sweetalert2.all.js'></script>
+    <script src='https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
+    <script>
+        var mensaje = '@ViewData["mensaje"].ToString()';
+
+        if (mensaje == "OK") {
+                $(document).ready(function () {
+                    swal('MENSAJE', 'El empleado fue creado con exito', 'success');
+                });
+        }
+        if (mensaje == "ERROR") {
+            $(document).ready(function () {
+                swal('ERROR', 'Ocurrio un error al guardar los datos del empleado', 'error');
+            });
+        }
+        if (mensaje == "VACIO") {
+            $(document).ready(function () {
+                swal('ADVERTENCIA', 'Debe llenar todos los campos del formulario!', 'warning');
+            });
+        }
+        if (mensaje == "EXCEPTION") {
+            $(document).ready(function () {
+                swal('ADVERTENCIA', 'Ocurrio una excepcion al tratar de guardar la informacion del empleado.', 'warning');
+            });
+        }
+    </script>
     <script>
         //lleno el select de las clinicas
         $.getJSON("/Clinica/ObtenerClinicas", { opcion: 1 }, function (respuesta_controlador) {
             $.each(respuesta_controlador, function (key, value) {
-                $("#cbClinica").append("<option value='"+value.cli_codigo+"'>" + value.cli_nombre + "</option>");
+                $("#cbClinica").append("<option value='" + value.cli_codigo + "'>" + value.cli_nombre + "</option>");
             });
         });
         //lleno el select de los puestos
         $.getJSON("/Puesto/ObtenerPuestos", { opcion: 1 }, function (respuesta_controlador) {
             $.each(respuesta_controlador, function (key, value) {
-                $("#cbPuesto").append("<option value='"+value.pue_codigo+"'>" + value.pue_nombre + "</option>");
+                $("#cbPuesto").append("<option value='" + value.pue_codigo + "'>" + value.pue_nombre + "</option>");
             });
         });
     </script>
@@ -70,45 +95,43 @@
         <h1>Creación de empleados</h1>
     </div>
     <div id="divContenido">
-        <form>
+        <form action="/Empleado/NuevoEmpleado" method="post">
             <table id="tblContenido">
                 <tr>
                     <td class="tdlabel"><label>Nombres del empleado:</label></td>
-                    <td><input type="text" id="txtNombres" name="txtNombres" class="empleado" /></td>
+                    <td><input type="text" id="txtNombres" name="txtNombres" class="empleado" autofocus required /></td>
                     <td><input type="file" id="fFotoE" name="fFotoE" accept="image/png, image/jpeg" /></td>
                 </tr>
                 <tr>
                     <td class="tdlabel"><label>Apellidos del empleado:</label></td>
-                    <td><input type="text" id="txtApellidos" name="txtApellidos" class="empleado" /></td>
+                    <td><input type="text" id="txtApellidos" name="txtApellidos" class="empleado" required/></td>
                     <td></td>
                 </tr>
                 <tr>
                     <td class="tdlabel"><label>Dirección:</label></td>
-                    <td><input type="text" id="txtDireccionE" name="txtDireccionE" class="empleado" /></td>
+                    <td><input type="text" id="txtDireccionE" name="txtDireccionE" class="empleado" required/></td>
                     <td></td>
                 </tr>
                 <tr>
                     <td class="tdlabel"><label>No. teléfono:</label></td>
-                    <td><input type="tel" id="txtTelefonoE" name="txtTelefonoE" class="empleado" /></td>
+                    <td><input type="tel" id="txtTelefonoE" name="txtTelefonoE" class="empleado" required/></td>
                     <td></td>
                 </tr>
                 <tr>
                     <td class="tdlabel"><label>Fecha de nacimiento:</label></td>
-                    <td><input type="date" id="txtFecNacE" name="txtFecNacE" class="empleado" /></td>
+                    <td><input type="date" id="txtFecNacE" name="txtFecNacE" class="empleado" required/></td>
                     <td></td>
                 </tr>
                 <tr>
                     <td class="tdlabel"><label>DPI:</label></td>
-                    <td><input type="text" id="txtDpi" name="txtDpi" class="empleado" /></td>
+                    <td><input type="text" id="txtDpi" name="txtDpi" class="empleado" required/></td>
                     <td></td>
                 </tr>
                 <tr>
                     <td class="tdlabel"><label>Clínica asignada:</label></td>
                     <td>
-                        <select id="cbClinica" name="cbClinica" class="empleado">
-                            <option value="0">-- Selecione una opcion --</option>
-                            @*<option value="1">Clinca A</option>
-                            <option value="2">Clinica B</option>*@
+                        <select id="cbClinica" name="cbClinica" class="empleado" required>
+                            <option value="">--Seleccione una opcion--</option>
                         </select>
                     </td>
                     <td></td>
@@ -116,11 +139,8 @@
                 <tr>
                     <td class="tdlabel"><label>Puesto:</label></td>
                     <td>
-                        <select id="cbPuesto" name="cbPuesto" class="empleado">
-                            <option value="0">-- Selecione una opcion --</option>
-                            @*<option value="1">Medico</option>
-                            <option value="2">Asistente</option>
-                            <option value="2">Recepcionista</option>*@
+                        <select id="cbPuesto" name="cbPuesto" class="empleado" required>
+                            <option value="">--Seleccione una opcion--</option>
                         </select>
                     </td>
                     <td></td>
@@ -134,6 +154,7 @@
         </form>
     </div>
 </div>
+
 </html>
 
 

@@ -34,10 +34,8 @@ namespace ControlExpedientesMedicos.Controllers
                     mensaje = "Usuario o password invalido!";
                     TempData["mensaje"] = mensaje;
                     ViewData["mensaje"] = mensaje;
-                    //return RedirectToAction("Login", "Login");
+
                     return View(ViewData["mensaje"]);
-                    //return RedirectToAction("Accion2");
-                    //return View("Login");
                 }
             }
 
