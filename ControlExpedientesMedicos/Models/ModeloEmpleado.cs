@@ -35,7 +35,8 @@ namespace ControlExpedientesMedicos.Models
                 cmd.Parameters.AddWithValue("telefono", telefono);
                 cmd.Parameters.AddWithValue("fecha_nacimiento", fecha_nacimiento);
                 cmd.Parameters.AddWithValue("dpi", dpi);
-                cmd.Parameters.AddWithValue("fotografia", fotografia);
+                //cmd.Parameters.AddWithValue("fotografia", fotografia);
+
                 cmd.Parameters.AddWithValue("codigo_clinica", codigo_clinica);
                 cmd.Parameters.AddWithValue("codigo_puesto", codigo_puesto);
 

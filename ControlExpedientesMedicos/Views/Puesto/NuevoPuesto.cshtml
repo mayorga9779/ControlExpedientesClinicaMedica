@@ -42,6 +42,32 @@
             width: 200px;
         }
     </style>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.11.4/sweetalert2.all.js'></script>
+    <script src='https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
+    <script>
+        var mensaje = '@ViewData["mensaje"].ToString()';
+
+        if (mensaje == "OK") {
+                $(document).ready(function () {
+                    swal('MENSAJE', 'El puesto fue creado con exito', 'success');
+                });
+        }
+        if (mensaje == "ERROR") {
+            $(document).ready(function () {
+                swal('ERROR', 'Ocurrio un error al guardar los datos del puesto', 'error');
+            });
+        }
+        if (mensaje == "VACIO") {
+            $(document).ready(function () {
+                swal('ADVERTENCIA', 'Debe llenar todos los campos del formulario!', 'warning');
+            });
+        }
+        if (mensaje == "EXCEPTION") {
+            $(document).ready(function () {
+                swal('ADVERTENCIA', 'Ocurrio una excepcion al tratar de guardar la informacion del puesto.', 'warning');
+            });
+        }
+    </script>
 </head>
 
 <div id="divContenidoPuestos">
@@ -49,15 +75,15 @@
         <h1>Creacion de puestos</h1>
     </div>
     <div id="divContenido">
-        <form>
+        <form action="/Puesto/NuevoPuesto" method="post">
             <table id="tblContenido">
                 <tr>
                     <td><label>Puesto:</label></td>
-                    <td><input type="text" id="txtPuesto" name="txtPuesto" /></td>
+                    <td><input type="text" id="txtPuesto" name="txtPuesto" required autofocus /></td>
                 </tr>
                 <tr>
                     <td>Descripcion:</td>
-                    <td><textarea rows="4" cols="100" id="taDescripcion" name="taDescripcion"></textarea></td>
+                    <td><textarea rows="4" cols="100" id="taDescripcion" name="taDescripcion" required></textarea></td>
                 </tr>
                 <tr>
                     <td></td>

@@ -26,23 +26,19 @@ namespace ControlExpedientesMedicos.Controllers
                 String direccion = formCollection["txtDireccionE"].ToString();
                 String telefono = formCollection["txtTelefonoE"].ToString();
                 DateTime fecha;
+                //String fecha_nacimiento = "20191012";
                 String fecha_nacimiento = "";
-                if (formCollection["txtFecNacE"].ToString().Equals(""))
-                {
-                    //fecha = DateTime.Now;
-
-                }
-                else
-                {
-                    fecha = Convert.ToDateTime(formCollection["txtFecNacE"].ToString());
-                    fecha_nacimiento = fecha.ToString("yyyyMMdd");
-                }
-                //String fecha_nacimiento = formCollection["txtFecNacE"].ToString();
                 int dpi = 0;
                 String fotografia = "";
                 int codigo_clinica = 0;
                 int codigo_puesto = 0;
 
+                if (!formCollection["txtFecNacE"].ToString().Equals(""))
+                {
+                    fecha = Convert.ToDateTime(formCollection["txtFecNacE"].ToString());
+                    fecha_nacimiento = fecha.ToString("yyyyMMdd");
+
+                }
                 if (formCollection["txtDpi"].ToString().Equals(""))
                 {
                     dpi = 0;

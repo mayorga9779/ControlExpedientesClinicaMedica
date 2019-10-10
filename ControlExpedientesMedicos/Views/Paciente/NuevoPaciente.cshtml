@@ -62,39 +62,39 @@
             <table id="tblContenido">
                 <tr>
                     <td class="tdlabel"><label>Nombres del paciente:</label></td>
-                    <td class="txtInput"><input type="text" id="txtNombresP" name="txtNombresP" class="paciente" /></td>
-                    <td><label>Fotografía:</label></td>
+                    <td class="txtInput"><input type="text" id="txtNombresP" name="txtNombresP" class="paciente" required /></td>
+                    <td>@*<label>Fotografía:</label>*@</td>
                 </tr>
                 <tr>
                     <td class="tdlabel"><label>Apellidos del paciente:</label></td>
-                    <td><input type="text" id="txtApellidosP" name="txtApellidosP" class="paciente" /></td>
-                    <td><input type="file" id="fFotoP" name="fFotoP" accept="image/png, image/jpeg" /></td>
+                    <td><input type="text" id="txtApellidosP" name="txtApellidosP" class="paciente" required /></td>
+                    <td>@*<input type="file" id="fFotoP" name="fFotoP" accept="image/png, image/jpeg" />*@</td>
                 </tr>
                 <tr>
                     <td class="tdlabel"><label>Dirección:</label></td>
-                    <td><input type="text" id="txtDireccionP" name="txtDireccionP" class="paciente" /></td>
+                    <td><input type="text" id="txtDireccionP" name="txtDireccionP" class="paciente" required /></td>
                     <td></td>
                 </tr>
                 <tr>
                     <td class="tdlabel"><label>No. teléfono:</label></td>
-                    <td><input type="tel" id="txtTelefonoP" name="txtTelefonoP" class="paciente" /></td>
+                    <td><input type="tel" id="txtTelefonoP" name="txtTelefonoP" class="paciente" required /></td>
                     <td></td>
                 </tr>
                 <tr>
                     <td class="tdlabel"><label>Fecha de nacimiento:</label></td>
-                    <td><!--<input type="date" id="txtFecNacP" name="txtFecNacP" class="paciente" />--></td>
+                    <td><input type="date" id="txtFecNacP" name="txtFecNacP" class="paciente" required /></td>
                     <td></td>
                 </tr>
                 <tr>
                     <td class="tdlabel"><label>No. Seguro social:</label></td>
-                    <td><input type="text" id="txtSeguroSocial" name="txtSeguroSocial" class="paciente" /></td>
+                    <td><input type="text" id="txtSeguroSocial" name="txtSeguroSocial" class="paciente" required /></td>
                     <td></td>
                 </tr>
                 <tr>
                     <td class="tdlabel"><label>Genero:</label></td>
                     <td>
-                        <select id="cbGenero" name="cbGenero" class="paciente">
-                            <option value="0">-- Selecione una opcion --</option>
+                        <select id="cbGenero" name="cbGenero" class="paciente" required>
+                            <option value="">-- Selecione una opcion --</option>
                             <option value="1">Hombre</option>
                             <option value="2">Mujer</option>
                         </select>

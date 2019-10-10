@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using System.Data;
 using System.Data.SqlClient;
 
 namespace ControlExpedientesMedicos.Models
@@ -43,11 +44,43 @@ namespace ControlExpedientesMedicos.Models
                     }
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 Console.WriteLine("Modelo puesto: " + ex.StackTrace);
             }
             return listaPuestos;
+        }
+
+        public String Crear_Puesto(int opcion, string nombre_puesto, string descripcion)
+        {
+            try
+            {
+                conn = new SqlConnection(cadena_conexion);
+                conn.Open();
+                SqlCommand cmd = new SqlCommand("dbo.sp_agregar_puesto", conn);
+                cmd.CommandType = System.Data.CommandType.StoredProcedure;
+
+                cmd.Parameters.AddWithValue("opcion", opcion);
+                cmd.Parameters.AddWithValue("pue_nombre", nombre_puesto);
+                cmd.Parameters.AddWithValue("pue_descripcion", descripcion);
+
+                SqlParameter pMensaje = new SqlParameter("mensaje", SqlDbType.VarChar, 8);
+                pMensaje.Direction = ParameterDirection.Output;
+                cmd.Parameters.Add(pMensaje);
+
+                cmd.ExecuteNonQuery();
+
+                mensaje = (String)pMensaje.Value;
+                conn.Close();
+
+            }
+            catch (Exception ex)
+            {
+                mensaje = "EXCEPTION";
+                Console.WriteLine("Modelo puesto: " + ex.StackTrace);
+            }
+
+            return mensaje;
         }
     }
 }

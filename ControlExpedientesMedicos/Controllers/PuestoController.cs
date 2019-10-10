@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using ControlExpedientesMedicos.Models;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ControlExpedientesMedicos.Controllers
@@ -12,8 +13,31 @@ namespace ControlExpedientesMedicos.Controllers
         private ModeloPuesto modeloPuesto = new ModeloPuesto();
         private String mensaje = "";
 
-        public IActionResult NuevoPuesto()
+        public IActionResult NuevoPuesto(IFormCollection formCollection)
         {
+            mensaje = "";
+            ViewData["mensaje"] = mensaje;
+
+            try
+            {
+                int opcion = 1;
+                String pue_nombre = formCollection["txtPuesto"].ToString();
+                String pue_descripcion = formCollection["taDescripcion"].ToString();
+
+                if (!pue_nombre.Equals("") && !pue_descripcion.Equals(""))
+                {
+                    mensaje = modeloPuesto.Crear_Puesto(opcion, pue_nombre, pue_descripcion);
+                    ViewData["mensaje"] = mensaje;
+                    return View(ViewData["mensaje"]);
+                }
+            }
+            catch (Exception ex)
+            {
+                mensaje = "EXCEPTION";
+                ViewData["mensaje"] = mensaje;
+                return View(ViewData["mensaje"]);
+            }
+
             return View();
         }
 
