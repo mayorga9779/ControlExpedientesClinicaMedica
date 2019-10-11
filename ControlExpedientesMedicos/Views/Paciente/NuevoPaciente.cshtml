@@ -51,6 +51,32 @@
             width: 225px;
         }
     </style>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.11.4/sweetalert2.all.js'></script>
+    <script src='https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
+    <script>
+        var mensaje = '@ViewData["mensaje"].ToString()';
+
+        if (mensaje == "OK") {
+                $(document).ready(function () {
+                    swal('MENSAJE', 'El empleado fue creado con exito', 'success');
+                });
+        }
+        if (mensaje == "ERROR") {
+            $(document).ready(function () {
+                swal('ERROR', 'Ocurrio un error al guardar los datos del empleado', 'error');
+            });
+        }
+        if (mensaje == "VACIO") {
+            $(document).ready(function () {
+                swal('ADVERTENCIA', 'Debe llenar todos los campos del formulario!', 'warning');
+            });
+        }
+        if (mensaje == "EXCEPTION") {
+            $(document).ready(function () {
+                swal('ADVERTENCIA', 'Ocurrio una excepcion al tratar de guardar la informacion del empleado.', 'warning');
+            });
+        }
+    </script>
 </head>
 
 <div id="divContenidoPaciente">
@@ -58,11 +84,11 @@
         <h1>Creación de pacientes</h1>
     </div>
     <div id="divContenido">
-        <form>
+        <form action="/Paciente/NuevoPaciente" method="post">
             <table id="tblContenido">
                 <tr>
                     <td class="tdlabel"><label>Nombres del paciente:</label></td>
-                    <td class="txtInput"><input type="text" id="txtNombresP" name="txtNombresP" class="paciente" required /></td>
+                    <td class="txtInput"><input type="text" id="txtNombresP" name="txtNombresP" class="paciente" required autofocus /></td>
                     <td>@*<label>Fotografía:</label>*@</td>
                 </tr>
                 <tr>
@@ -87,7 +113,7 @@
                 </tr>
                 <tr>
                     <td class="tdlabel"><label>No. Seguro social:</label></td>
-                    <td><input type="text" id="txtSeguroSocial" name="txtSeguroSocial" class="paciente" required /></td>
+                    <td><input type="text" id="txtSeguroSocial" name="txtSeguroSocial" class="paciente" /></td>
                     <td></td>
                 </tr>
                 <tr>
@@ -95,8 +121,8 @@
                     <td>
                         <select id="cbGenero" name="cbGenero" class="paciente" required>
                             <option value="">-- Selecione una opcion --</option>
-                            <option value="1">Hombre</option>
-                            <option value="2">Mujer</option>
+                            <option value="M">Masculino</option>
+                            <option value="F">Femenino</option>
                         </select>
                     </td>
                     <td></td>
