@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
@@ -53,6 +54,41 @@ namespace ControlExpedientesMedicos.Models
             }
 
             return mensaje;
+        }
+
+        public ArrayList Obtener_Pacientes(int opcion)
+        {
+            ArrayList listaPacientes = new ArrayList();
+            int codigo = 0;
+            String nombre = "";
+
+            try
+            {
+                conn = new SqlConnection(cadena_conexion);
+                conn.Open();
+                SqlCommand cmd = new SqlCommand("dbo.sp_obtener_pacientes", conn);
+                cmd.CommandType = System.Data.CommandType.StoredProcedure;
+
+                cmd.Parameters.AddWithValue("opcion", 1);
+                SqlDataReader reader = cmd.ExecuteReader();
+
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        codigo = reader.GetInt32(0);
+                        nombre = reader.GetString(1);
+                        Paciente paciente = new Paciente(codigo, nombre);
+                        listaPacientes.Add(paciente);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Modelo clinica: " + ex.StackTrace);
+            }
+
+            return listaPacientes;
         }
     }
 }

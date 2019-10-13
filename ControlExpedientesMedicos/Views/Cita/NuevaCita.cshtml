@@ -50,44 +50,75 @@
             width: 225px;
         }
     </style>
-</head>
-    
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.11.4/sweetalert2.all.js'></script>
+    <script src='https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
+    <script>
+        var mensaje = '@ViewData["mensaje"].ToString()';
 
-    <div id="divContenidoCita">
-        <div id="diviTitulo">
-            <h1>Creación de citas</h1>
-        </div>
-        <div id="divContenido">
-            <form>
-                <table id="tblContenido">
-                    <tr>
-                        <td class="tdlabel"><label>Fecha cita:</label></td>
-                        <td class="txtInput"><!--<input type="date" id="dpFechaCita" name="dpFechaCita" class="paciente" />--></td>
-                    </tr>
-                    <tr>
-                        <td class="tdlabel"><label>Hora inicial:</label></td>
-                        <td><!--<input type="time" id="txtApellidosP" name="txtApellidosP" class="paciente" />--></td>
-                    </tr>
-                    <tr>
-                        <td class="tdlabel"><label>Hora final:</label></td>
-                        <td><!--<input type="time" id="txtDireccionP" name="txtDireccionP" class="paciente" />--></td>
-                    </tr>
-                    <tr>
-                        <td class="tdlabel"><label>Paciente:</label></td>
-                        <td>
-                            <select id="cbPaciente" name="cbPaciente" class="paciente">
-                                <option value="0">-- Selecione una opcion --</option>
-                                <option value="1">Paciente 1</option>
-                                <option value="2">Paciente 2</option>
-                            </select>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td><input type="submit" id="btnAceptar" name="btnAceptar" value="Guardar" /></td>
-                    </tr>
-                </table>
-            </form>
-        </div>
+        if (mensaje == "OK") {
+                $(document).ready(function () {
+                    swal('MENSAJE', 'La cita fue creada con exito', 'success');
+                });
+        }
+        if (mensaje == "ERROR") {
+            $(document).ready(function () {
+                swal('ERROR', 'Ocurrio un error al guardar los datos de la cita', 'error');
+            });
+        }
+        if (mensaje == "VACIO") {
+            $(document).ready(function () {
+                swal('ADVERTENCIA', 'Debe llenar todos los campos del formulario!', 'warning');
+            });
+        }
+        if (mensaje == "EXCEPTION") {
+            $(document).ready(function () {
+                swal('ADVERTENCIA', 'Ocurrio una excepcion al tratar de guardar la informacion de la cita.', 'warning');
+            });
+        }
+    </script>
+    <script>
+        //lleno el select de las clinicas
+        $.getJSON("/Paciente/ObtenerPacientes", { opcion: 1 }, function (respuesta_controlador) {
+            $.each(respuesta_controlador, function (key, value) {
+                $("#cbPaciente").append("<option value='" + value.pac_codigo + "'>" + value.pac_nombre + "</option>");
+            });
+        });
+    </script>
+</head>
+
+<div id="divContenidoCita">
+    <div id="diviTitulo">
+        <h1>Creación de citas</h1>
     </div>
+    <div id="divContenido">
+        <form action="/Cita/NuevaCita/" method="post">
+            <table id="tblContenido">
+                <tr>
+                    <td class="tdlabel"><label>Fecha cita:</label></td>
+                    <td class="txtInput"><input type="date" id="dpFechaCita" name="dpFechaCita" class="cita" required autofocus /></td>
+                </tr>
+                <tr>
+                    <td class="tdlabel"><label>Hora inicial:</label></td>
+                    <td><input type="time" id="txtHoraInicial" name="txtHoraInicial" class="cita" required /></td>
+                </tr>
+                <tr>
+                    <td class="tdlabel"><label>Hora final:</label></td>
+                    <td><input type="time" id="txtHoraFinal" name="txtHoraFinal" class="cita" required /></td>
+                </tr>
+                <tr>
+                    <td class="tdlabel"><label>Paciente:</label></td>
+                    <td>
+                        <select id="cbPaciente" name="cbPaciente" class="cita" required>
+                            <option value="">-- Selecione una opcion --</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td><input type="submit" id="btnAceptar" name="btnAceptar" value="Guardar" /></td>
+                </tr>
+            </table>
+        </form>
+    </div>
+</div>
 </html>

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -80,6 +81,14 @@ namespace ControlExpedientesMedicos.Controllers
             }
 
             return View();
+        }
+
+        public JsonResult ObtenerPacientes()
+        {
+            ArrayList listaPacientes = new ArrayList();
+            listaPacientes = modeloPaciente.Obtener_Pacientes(1);
+
+            return Json(listaPacientes);     //retorno la lista en formato Json
         }
     }
 }
