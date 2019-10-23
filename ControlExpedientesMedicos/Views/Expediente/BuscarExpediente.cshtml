@@ -1,0 +1,178 @@
+﻿
+@{
+    ViewData["Title"] = "Expedientes";
+    Layout = "~/Views/Shared/_MasterPage.cshtml";
+}
+
+<!DOCTYPE html>
+<html lang="es-gt">
+<head>
+    <meta charset="UTF-8" />
+    <title>Expedientes</title>
+    <style>
+        #divContenidoExpediente {
+            position: relative;
+            float: left;
+            width: 100%;
+            height: 100%;
+            overflow-x: auto;
+        }
+
+        #diviTitulo {
+            position: relative;
+            float: left;
+            width: 100%;
+            height: 10%;
+            text-align: center;
+            margin: 0;
+            color: #808080;
+            margin-bottom: 20px;
+        }
+
+        #tblContenido {
+            width: 25%;
+        }
+
+        #btnAceptar {
+            width: 125px;
+            height: 40px;
+        }
+
+        #tblExpediente{
+            
+        }
+
+        .expediente {
+            width: 200px;
+        }
+
+        .tdlabel {
+            width: 200px;
+        }
+
+        .txtInput {
+            width: 225px;
+        }
+    </style>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.11.4/sweetalert2.all.js'></script>
+    <script src='https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
+    <script>
+        @*var mensaje = '@ViewData["mensaje"].ToString()';
+
+        if (mensaje == "OK") {
+                $(document).ready(function () {
+                    swal('MENSAJE', 'El expediente fue creado con exito', 'success');
+                });
+        }
+        if (mensaje == "ERROR") {
+            $(document).ready(function () {
+                swal('ERROR', 'Ocurrio un error al guardar los datos del expediente', 'error');
+            });
+        }
+        if (mensaje == "VACIO") {
+            $(document).ready(function () {
+                swal('ADVERTENCIA', 'Debe llenar todos los campos del formulario!', 'warning');
+            });
+        }
+        if (mensaje == "EXCEPTION") {
+            $(document).ready(function () {
+                swal('ADVERTENCIA', 'Ocurrio una excepcion al tratar de guardar la informacion del expediente.', 'warning');
+            });
+        }*@
+    </script>
+    <script>
+        //lleno la tabla para mostrar los pacientes
+        $.getJSON("/Paciente/ObtenerListadoPacientes", { opcion: 1 }, function (respuesta_controlador) {
+            $.each(respuesta_controlador, function (key, value) {
+                //$("#cbPaciente").append("<option value='" + value.pac_codigo + "'>" + value.pac_nombre + "</option>");
+                tabla = document.getElementById("tblBody");
+                var tr = document.createElement("tr");
+                tr.setAttribute = value.pac_codigo;        //le pongo un name a la fila
+                //agrego una columna que contenga radiobutton para seleccionar una fila
+                var columna0 = document.createElement("input");
+                columna0.setAttribute('type', 'radio');         //tipo de control
+                columna0.setAttribute('name', 'radiobtn');
+                columna0.setAttribute('class', 'radiobtn');
+                columna0.setAttribute('id', value.pac_codigo);      //atributo name
+                columna0.setAttribute('value', value.pac_codigo);
+                //columna0.innerHTML = 
+                var columna1 = document.createElement("td");
+                columna1.setAttribute('id', 'codigo');
+                columna1.setAttribute('class', 'codigo');
+                columna1.innerHTML = value.pac_codigo;
+                var columna2 = document.createElement("td");
+                columna2.innerHTML = value.pac_nombre;
+                var columna3 = document.createElement("td");
+                columna3.innerHTML = value.pac_apellido;
+                var columna4 = document.createElement("td");
+                columna4.innerHTML = value.pac_telefono;
+                var columna5 = document.createElement("td");
+                columna5.innerHTML = value.pac_direccion;
+                var columna6 = document.createElement("td");
+                columna6.innerHTML = value.pac_email;
+
+                tabla.appendChild(tr);
+                tabla.appendChild(columna0);
+                tabla.appendChild(columna1);
+                tabla.appendChild(columna2);
+                tabla.appendChild(columna3);
+                tabla.appendChild(columna4);
+                tabla.appendChild(columna5);
+                tabla.appendChild(columna6);
+            });
+        });
+    </script>
+
+    <script>
+        //con este script hago click en el boton abrir expediente y verifico que el radiobutton este seleccionado
+        $(document).ready(function () {
+            $("#btnAceptar").click(function () {
+                var valor = $('input:radio[name=radiobtn]:checked').val();
+                var codigo_paciente = '@Url.Action("Expediente", "ModificarExpediente")' + '/' + valor;
+                //$("#formulario").submit();
+            });
+        });
+    </script>
+</head>
+
+<div id="divContenidoExpediente">
+    <div id="diviTitulo">
+        <h1>Busqueda de expedientes</h1>
+    </div>
+    <div id="divContenido">
+        <form action="/Paciente/ObtenerListadoPacientes" method="post">
+            <table id="tblContenido">
+                <tr>
+                    <td>Nombres del paciente:</td>
+                    <td><input type="text" id="txtNombres" name="txtNombres" autofocus></td>
+                </tr>
+                <tr>
+                    <td>Apellidos del paciente:</td>
+                    <td><input type="text" id="txtApellidos" name="txtApellidos" autofocus></td>
+                </tr>
+            </table>
+        </form>
+        <hr />
+        <form action="/Expediente/ModificarExpediente" method="get">
+            <table id="tblExpediente">
+                <thead>
+                    <tr>
+                        <th>Seleccion</th>
+                        <th>Codigo expediente</th>
+                        <th>Nombres de paciente</th>
+                        <th>Apellidos de paciente</th>
+                        <th>Telefono</th>
+                        <th>Direccion</th>
+                        <th>Correo electronico</th>
+                    </tr>
+                </thead>
+                <tbody id="tblBody">
+
+                </tbody>
+            </table>
+            <input type="submit" id="btnAceptar" name="btnAceptar" value="Abrir expediente" />
+        </form>
+    </div>
+</div>
+</html>
+

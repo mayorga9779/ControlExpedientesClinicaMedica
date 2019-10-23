@@ -139,7 +139,7 @@
 </head>
 
 <div class="diviTitulo">
-    <h1>Modificacion de expediente medico</h1>
+    <h1>Expediente medico</h1>
 </div>
 <div class="tabs-container">
     <ul class="tabs" id="tabs">
@@ -155,28 +155,28 @@
             <table id="tblExpediente_Paciente">
                 <tr>
                     <td class="tdlabel"><label>Expediente No.:</label></td>
-                    <td style="width: 300px;"><input type="text" id="txtNoExpediente" name="txtNoExpediente" class="expediente" /></td>
+                    <td style="width: 300px;"><input type="text" id="txtNoExpediente" name="txtNoExpediente" class="expediente" value="@ViewBag.codigo_expediente" /></td>
                     <td style="width: 100px;" class="tdlabel"><label></label></td>
                     <td rowspan="6"><img src="~/img/user.png" alt="" width="200" height="250"></td>
                     <td></td>
                 </tr>
                 <tr>
                     <td class="tdlabel"><label>Titulo:</label></td>
-                    <td><input type="text" id="txtTitulo" name="txtTitulo" class="expediente" /></td>
+                    <td><input type="text" id="txtTitulo" name="txtTitulo" class="expediente" value="@ViewBag.descripcion" /></td>
                     <td style="width: 25px; text-align:right;"><label>Agregar</label></td>
                     <td></td>
                     <td></td>
                 </tr>
                 <tr>
                     <td class="tdlabel"><label>Nombres del paciente:</label></td>
-                    <td><input type="text" id="txtNombrePaciente" name="txtNombrePaciente" class="expediente" /></td>
+                    <td><input type="text" id="txtNombrePaciente" name="txtNombrePaciente" class="expediente" value="@ViewBag.nombres" /></td>
                     <td style="width: 25px; text-align:right;"><label>Eliminar</label></td>
                     <td></td>
                     <td></td>
                 </tr>
                 <tr>
                     <td class="tdlabel"><label>Apellidos del paciente:</label></td>
-                    <td><input type="text" id="txtApellidosPaciente" name="txtApellidosPaciente" class="expediente" /></td>
+                    <td><input type="text" id="txtApellidosPaciente" name="txtApellidosPaciente" class="expediente" value="@ViewBag.apellidos" /></td>
                     <td></td>
                     <td></td>
                     <td></td>
@@ -184,7 +184,7 @@
                 <tr>
                     <td class="tdlabel"><label>Domicilio:</label></td>
                     <td>
-                        <textarea rows="2" cols="50" id="taDireccion" name="taDireccion"></textarea>
+                        <textarea rows="2" cols="50" id="taDireccion" name="taDireccion">@ViewBag.direccion</textarea>
                     </td>
                     <td></td>
                     <td></td>
@@ -192,21 +192,21 @@
                 </tr>
                 <tr>
                     <td class="tdlabel"><label>Telefono:</label></td>
-                    <td><input type="text" id="txtTelefono" name="txtTelefono" class="expediente" /></td>
+                    <td><input type="text" id="txtTelefono" name="txtTelefono" class="expediente" value="@ViewBag.telefono" /></td>
                     <td></td>
                     <td></td>
                     <td></td>
                 </tr>
                 <tr>
                     <td class="tdlabel"><label>Fecha de nacimiento:</label></td>
-                    <td><input type="date" id="txtFechaNacimiento" name="txtFechaNacimiento" class="expediente" /></td>
+                    <td><input type="date" id="txtFechaNacimiento" name="txtFechaNacimiento" class="expediente" value="@ViewBag.fecha_nacimiento" /></td>
                     <td></td>
                     <td></td>
                     <td></td>
                 </tr>
                 <tr>
                     <td class="tdlabel"><label>No. de seguro social:</label></td>
-                    <td><input type="text" id="txtSeguroSocial" name="txtSeguroSocial" class="expediente" /></td>
+                    <td><input type="text" id="txtSeguroSocial" name="txtSeguroSocial" class="expediente" value="@ViewBag.seguro_social" /></td>
                     <td></td>
                     <td></td>
                     <td></td>
@@ -215,9 +215,7 @@
                     <td class="tdlabel"><label>Genero:</label></td>
                     <td>
                         <select id="cbGenero" name="cbGenero" class="expediente">
-                            <option value="0">-- Selecione una opcion --</option>
-                            <option value="1">Hombre</option>
-                            <option value="2">Mujer</option>
+                            <option value="0">@ViewBag.genero</option>
                         </select>
                     </td>
                     <td></td>
@@ -226,7 +224,7 @@
                 </tr>
                 <tr>
                     <td class="tdlabel"><label>Correo electronico:</label></td>
-                    <td><input type="text" id="txtEmail" name="txtEmail" class="expediente" /></td>
+                    <td><input type="text" id="txtEmail" name="txtEmail" class="expediente" value="@ViewBag.email" /></td>
                     <td></td>
                     <td></td>
                     <td></td>

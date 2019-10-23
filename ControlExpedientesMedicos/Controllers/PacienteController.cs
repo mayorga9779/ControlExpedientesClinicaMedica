@@ -90,5 +90,25 @@ namespace ControlExpedientesMedicos.Controllers
 
             return Json(listaPacientes);     //retorno la lista en formato Json
         }
+
+        public JsonResult ObtenerListadoPacientes(IFormCollection formCollection)
+        {
+            ArrayList listadoPacientes = new ArrayList();
+            String nombres = formCollection["txtNombres"].ToString();
+            String apellidos = formCollection["txtApellidos"].ToString();
+
+            if (nombres.Equals(""))
+            {
+                nombres = null;
+            }
+            if (apellidos.Equals(""))
+            {
+                apellidos = null;
+            }
+
+            listadoPacientes = modeloPaciente.Obtener_Listado_Pacientes(1, nombres, apellidos);
+
+            return Json(listadoPacientes);
+        }
     }
 }

@@ -90,5 +90,51 @@ namespace ControlExpedientesMedicos.Models
 
             return listaPacientes;
         }
+
+        public ArrayList Obtener_Listado_Pacientes(int pOpcion, String pNombres, String pApellidos)
+        {
+            ArrayList listaPacientes = new ArrayList();
+            int codigo = 0;
+            String nombres = "";
+            String apellidos = "";
+            String telefono = "";
+            String direccion = "";
+            String email = "";
+
+            try
+            {
+                conn = new SqlConnection(cadena_conexion);
+                conn.Open();
+                SqlCommand cmd = new SqlCommand("dbo.sp_obtener_pacientes_expediente", conn);
+                cmd.CommandType = System.Data.CommandType.StoredProcedure;
+
+                cmd.Parameters.AddWithValue("opcion", 1);
+                cmd.Parameters.AddWithValue("nombres", nombres);
+                cmd.Parameters.AddWithValue("apellidos", apellidos);
+                SqlDataReader reader = cmd.ExecuteReader();
+
+                if(reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        codigo = reader.GetInt32(0);
+                        nombres = reader.GetString(1);
+                        apellidos = reader.GetString(2);
+                        telefono = reader.GetString(3);
+                        direccion = reader.GetString(4);
+                        email = reader.GetString(5);
+
+                        Paciente paciente = new Paciente(codigo, nombres, apellidos, telefono, direccion, email);
+                        listaPacientes.Add(paciente);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                mensaje = "EXCEPTION";
+            }
+
+            return listaPacientes;
+        }
     }
 }

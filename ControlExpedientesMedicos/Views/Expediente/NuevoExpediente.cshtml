@@ -9,69 +9,99 @@
 <head>
     <meta charset="UTF-8" />
     <title>Expedientes</title>
+    <style>
+        #divContenidoExpediente {
+            position: relative;
+            float: left;
+            width: 100%;
+            height: 100%;
+            overflow-x: auto;
+        }
+
+        #diviTitulo {
+            position: relative;
+            float: left;
+            width: 100%;
+            height: 10%;
+            text-align: center;
+            margin: 0;
+            color: #808080;
+            margin-bottom: 20px;
+        }
+
+        #tblContenido {
+            width: 25%;
+        }
+
+        #btnAceptar {
+            width: 125px;
+            height: 40px;
+        }
+
+        .expediente {
+            width: 200px;
+        }
+
+        .tdlabel {
+            width: 200px;
+        }
+
+        .txtInput {
+            width: 225px;
+        }
+    </style>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.11.4/sweetalert2.all.js'></script>
+    <script src='https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
+    <script>
+        var mensaje = '@ViewData["mensaje"].ToString()';
+
+        if (mensaje == "OK") {
+                $(document).ready(function () {
+                    swal('MENSAJE', 'El expediente fue creado con exito', 'success');
+                });
+        }
+        if (mensaje == "ERROR") {
+            $(document).ready(function () {
+                swal('ERROR', 'Ocurrio un error al guardar los datos del expediente', 'error');
+            });
+        }
+        if (mensaje == "VACIO") {
+            $(document).ready(function () {
+                swal('ADVERTENCIA', 'Debe llenar todos los campos del formulario!', 'warning');
+            });
+        }
+        if (mensaje == "EXCEPTION") {
+            $(document).ready(function () {
+                swal('ADVERTENCIA', 'Ocurrio una excepcion al tratar de guardar la informacion del expediente.', 'warning');
+            });
+        }
+    </script>
+    <script>
+        //lleno el select de las clinicas
+        $.getJSON("/Paciente/ObtenerPacientes", { opcion: 1 }, function (respuesta_controlador) {
+            $.each(respuesta_controlador, function (key, value) {
+                $("#cbPaciente").append("<option value='" + value.pac_codigo + "'>" + value.pac_nombre + "</option>");
+            });
+        });
+    </script>
 </head>
-</html>
-
-<style>
-    #divContenidoExpediente {
-        position: relative;
-        float: left;
-        width: 100%;
-        height: 100%;
-        overflow-x: auto;
-    }
-
-    #diviTitulo {
-        position: relative;
-        float: left;
-        width: 100%;
-        height: 10%;
-        text-align: center;
-        margin: 0;
-        color: #808080;
-        margin-bottom: 20px;
-    }
-
-    #tblContenido {
-        width: 25%;
-    }
-
-    #btnAceptar {
-        width: 125px;
-        height: 40px;
-    }
-
-    .expediente {
-        width: 200px;
-    }
-
-    .tdlabel {
-        width: 200px;
-    }
-
-    .txtInput {
-        width: 225px;
-    }
-</style>
 
 <div id="divContenidoExpediente">
     <div id="diviTitulo">
         <h1>Creación de expedientes</h1>
     </div>
     <div id="divContenido">
-        <form>
+        <form action="/Expediente/NuevoExpediente" method="post">
             <table id="tblContenido">
                 <tr>
                     <td>Descripcion:</td>
-                    <td><textarea rows="4" cols="100" id="taDescripcion" name="taDescripcion"></textarea></td>
+                    <td><textarea rows="4" cols="100" id="taDescripcion" name="taDescripcion" required autofocus></textarea></td>
                 </tr>
                 <tr>
                     <td class="tdlabel"><label>Paciente:</label></td>
                     <td>
-                        <select id="cbPaciente" name="cbPaciente" class="expediente">
-                            <option value="0">-- Selecione una opcion --</option>
-                            <option value="1">Paciente 1</option>
-                            <option value="2">Paciente 2</option>
+                        <select id="cbPaciente" name="cbPaciente" class="expediente" required>
+                            <option value="">-- Selecione una opcion --</option>
                         </select>
                     </td>
                 </tr>
@@ -83,3 +113,4 @@
         </form>
     </div>
 </div>
+</html>
