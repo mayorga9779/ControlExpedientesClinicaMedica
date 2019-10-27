@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
@@ -49,6 +50,46 @@ namespace ControlExpedientesMedicos.Models
             }
 
             return mensaje;
+        }
+
+        public ArrayList ObtenerDetalleCitas(int codigo_paciente)
+        {
+            ArrayList listaCitas = new ArrayList();
+            int opcion = 1;
+            DateTime fecha_cita;
+            String hora_inicio;
+            String hora_fin;
+
+            try
+            {
+                conn = new SqlConnection(cadena_conexion);
+                conn.Open();
+                SqlCommand cmd = new SqlCommand("dbo.sp_obtener_detalle_citas", conn);
+                cmd.CommandType = System.Data.CommandType.StoredProcedure;
+
+                cmd.Parameters.AddWithValue("opcion", opcion);
+                cmd.Parameters.AddWithValue("codigo_paciente", codigo_paciente);
+                SqlDataReader reader = cmd.ExecuteReader();
+
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        fecha_cita = reader.GetDateTime(0);
+                        hora_inicio = reader.GetString(1);
+                        hora_fin = reader.GetString(2);
+
+                        Cita cita = new Cita(fecha_cita, hora_inicio, hora_fin);
+                        listaCitas.Add(cita);
+                    }
+                }
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine("Modelo cita: " + ex.StackTrace);
+            }
+
+            return listaCitas;
         }
     }
 }

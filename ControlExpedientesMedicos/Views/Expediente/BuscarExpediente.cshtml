@@ -38,8 +38,10 @@
             height: 40px;
         }
 
-        #tblExpediente{
-            
+        #tblExpediente {
+            width: 100%;
+            border: solid thin;
+            border-color: #808080;
         }
 
         .expediente {
@@ -83,6 +85,7 @@
     <script>
         //lleno la tabla para mostrar los pacientes
         $.getJSON("/Paciente/ObtenerListadoPacientes", { opcion: 1 }, function (respuesta_controlador) {
+            //var formulario = document.getElementById("frm");
             $.each(respuesta_controlador, function (key, value) {
                 //$("#cbPaciente").append("<option value='" + value.pac_codigo + "'>" + value.pac_nombre + "</option>");
                 tabla = document.getElementById("tblBody");
@@ -95,7 +98,9 @@
                 columna0.setAttribute('class', 'radiobtn');
                 columna0.setAttribute('id', value.pac_codigo);      //atributo name
                 columna0.setAttribute('value', value.pac_codigo);
-                //columna0.innerHTML = 
+                //columna0.setAttribute('checked', 'checked');
+                //columna0.innerHTML =
+                var columnarb = document.createElement("td");
                 var columna1 = document.createElement("td");
                 columna1.setAttribute('id', 'codigo');
                 columna1.setAttribute('class', 'codigo');
@@ -111,14 +116,15 @@
                 var columna6 = document.createElement("td");
                 columna6.innerHTML = value.pac_email;
 
-                tabla.appendChild(tr);
-                tabla.appendChild(columna0);
-                tabla.appendChild(columna1);
-                tabla.appendChild(columna2);
-                tabla.appendChild(columna3);
-                tabla.appendChild(columna4);
-                tabla.appendChild(columna5);
-                tabla.appendChild(columna6);
+                columnarb.appendChild(columna0);    //agrego la columna de radiobutton al td
+                tr.appendChild(columnarb);          //agrego el td de los radiobutton al tr
+                tr.appendChild(columna1);           //agrego los demas td de las otras columnas al tr
+                tr.appendChild(columna2);
+                tr.appendChild(columna3);
+                tr.appendChild(columna4);
+                tr.appendChild(columna5);
+                tr.appendChild(columna6);
+                tabla.appendChild(tr);              //agrego el tr a la tabla
             });
         });
     </script>
@@ -126,11 +132,17 @@
     <script>
         //con este script hago click en el boton abrir expediente y verifico que el radiobutton este seleccionado
         $(document).ready(function () {
+            var mensaje = 0;
+
             $("#btnAceptar").click(function () {
-                var valor = $('input:radio[name=radiobtn]:checked').val();
-                var codigo_paciente = '@Url.Action("Expediente", "ModificarExpediente")' + '/' + valor;
-                //$("#formulario").submit();
+                var valor = $('input:radio[name=radiobtn]:checked').val();  //obtengo el valor que tiene asignado el radiobutton seleccionado
+
+                if (valor != null) {
+                    document.getElementById("frm").action = "/Expediente/ModificarExpediente";
+                    document.getElementById("frm").submit();
+                }
             });
+            
         });
     </script>
 </head>
@@ -153,8 +165,9 @@
             </table>
         </form>
         <hr />
-        <form action="/Expediente/ModificarExpediente" method="get">
-            <table id="tblExpediente">
+        @*<form action="/Expediente/ModificarExpediente" method="get">*@
+        <form id="frm">
+            <table id="tblExpediente" class="footable">
                 <thead>
                     <tr>
                         <th>Seleccion</th>
@@ -170,9 +183,57 @@
 
                 </tbody>
             </table>
+            <br />
+            <br />
             <input type="submit" id="btnAceptar" name="btnAceptar" value="Abrir expediente" />
         </form>
     </div>
+    <style>
+        .footable {
+            width: 100%;
+            font-family: 'trebuchet MS', 'Lucida sans', Arial;
+            font-size: 14px;
+            color: #444;
+            border: solid #ccc 1px;
+            border-collapse: separate;
+            border-spacing: 0;
+        }
+
+            .footable > tbody > tr > td, .footable > thead > tr > th {
+                border-left: 1px solid #ccc;
+                border-top: 1px solid #ccc;
+                padding: 10px;
+                text-align: left;
+            }
+
+            .footable > thead > tr > th, .footable > thead > tr > td {
+                background-color: #dce9f9;
+            }
+
+        .footable {
+            -moz-border-radius: 6px;
+            -webkit-border-radius: 6px;
+            border-radius: 6px;
+        }
+
+            .footable > thead > tr > th {
+                background-image: -webkit-gradient(linear, left top, left bottom, from(#ebf3fc), to(#dce9f9));
+                background-image: -webkit-linear-gradient(top, #ebf3fc, #dce9f9);
+                background-image: -moz-linear-gradient(top, #ebf3fc, #dce9f9);
+                background-image: -ms-linear-gradient(top, #ebf3fc, #dce9f9);
+                background-image: -o-linear-gradient(top, #ebf3fc, #dce9f9);
+                background-image: linear-gradient(to bottom, #ebf3fc, #dce9f9);
+                -webkit-box-shadow: 0 1px 0 rgba(255,255,255,.8) inset;
+                -moz-box-shadow: 0 1px 0 rgba(255,255,255,.8) inset;
+                box-shadow: 0 1px 0 rgba(255,255,255,.8) inset;
+                border-top: none;
+                text-shadow: 0 1px 0 rgba(255,255,255,.5);
+            }
+
+            .footable > tbody > tr:hover {
+                background: #fbf8e9;
+            }
+    </style>
 </div>
 </html>
 

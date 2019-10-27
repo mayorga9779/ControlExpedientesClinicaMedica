@@ -1,14 +1,18 @@
 ﻿using System;
+using System.Collections;
 using ControlExpedientesMedicos.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Nancy.Json;
+using Nancy.Session;
 
 namespace ControlExpedientesMedicos.Controllers
 {
     public class ExpedienteController : Controller
     {
         private ModeloExpediente modeloExpediente = new ModeloExpediente();
-        Expediente expediente = null;
+        private ModeloCita modeloCita = new ModeloCita();
+        private Expediente expediente = null;
         private String mensaje = "";
 
         public IActionResult NuevoExpediente(IFormCollection formCollection)
@@ -84,6 +88,17 @@ namespace ControlExpedientesMedicos.Controllers
             }
 
             return View();
+        }
+
+        public JsonResult ModificarExpedienteCitas(int codigo_paciente, String nombre_paciente) //en javascript el nombre de parametro que envio es codigo_paciente
+        {
+            ArrayList listaCitas = new ArrayList();
+            HttpContext.Session.SetString("codigo_paciente", codigo_paciente.ToString());
+            HttpContext.Session.SetString("nombre_paciente", nombre_paciente);
+
+            listaCitas = modeloCita.ObtenerDetalleCitas(codigo_paciente);
+
+            return Json(listaCitas);
         }
     }
 }

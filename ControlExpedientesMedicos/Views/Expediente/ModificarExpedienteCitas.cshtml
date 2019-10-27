@@ -156,24 +156,21 @@
                 <tr>
                     <td class="tdlabel"><label>Expediente No.:</label></td>
                     <td style="width: 300px;"><input type="text" id="txtNoExpediente" name="txtNoExpediente" class="expediente" value="@ViewBag.codigo_expediente" /></td>
-                    <td class="tdlabel"><label>Codigo paciente:</label></td>
-                    <td style="width: 300px;"><input type="text" id="txtCodigoPaciente" name="txtCodigoPaciente" class="expediente" value="@ViewBag.codigo_expediente" /></td>
-
-                    @*<td style="width: 100px;" class="tdlabel"><label></label></td>
-                        <td rowspan="6"><img src="~/img/user.png" alt="" width="200" height="250"></td>*@
+                    <td style="width: 100px;" class="tdlabel"><label></label></td>
+                    <td rowspan="6"><img src="~/img/user.png" alt="" width="200" height="250"></td>
                     <td></td>
                 </tr>
                 <tr>
                     <td class="tdlabel"><label>Titulo:</label></td>
                     <td><input type="text" id="txtTitulo" name="txtTitulo" class="expediente" value="@ViewBag.descripcion" /></td>
-                    @*<td style="width: 25px; text-align:right;"><label>Agregar</label></td>*@
+                    <td style="width: 25px; text-align:right;"><label>Agregar</label></td>
                     <td></td>
                     <td></td>
                 </tr>
                 <tr>
                     <td class="tdlabel"><label>Nombres del paciente:</label></td>
                     <td><input type="text" id="txtNombrePaciente" name="txtNombrePaciente" class="expediente" value="@ViewBag.nombres" /></td>
-                    @*<td style="width: 25px; text-align:right;"><label>Eliminar</label></td>*@
+                    <td style="width: 25px; text-align:right;"><label>Eliminar</label></td>
                     <td></td>
                     <td></td>
                 </tr>
@@ -251,26 +248,24 @@
         @*PANEL DE PESTANIA CITA*@
         <div class="panels_item">
             @*<div id="skeduler-container"></div>*@
-            <form action="/Cita/NuevaCita" method="post">
-                <table id="tblExpediente_Cita">
-                    @*<tr>
-                            <td class="tdlabelCita"><label>Fecha cita:</label></td>
-                            <td class="txtInput"><input type="date" id="dpFechaCita" name="dpFechaCita" class="cita" /></td>
-                        </tr>
-                        <tr>
-                            <td class="tdlabelCita"><label>Hora inicial:</label></td>
-                            <td><input type="time" id="txtApellidosP" name="txtApellidosP" class="cita" /></td>
-                        </tr>
-                        <tr>
-                            <td class="tdlabelCita"><label>Hora final:</label></td>
-                            <td><input type="time" id="txtDireccionP" name="txtDireccionP" class="cita" /></td>
-                        </tr>*@
-                    <tr>
-                        <td></td>
-                        <td><input type="submit" id="btnAceptarCita" name="btnAceptarCita" value="Guardar" /></td>
-                    </tr>
-                </table>
-            </form>
+            <table id="tblExpediente_Cita">
+                <tr>
+                    <td class="tdlabelCita"><label>Fecha cita:</label></td>
+                    <td class="txtInput"><input type="date" id="dpFechaCita" name="dpFechaCita" class="cita" /></td>
+                </tr>
+                <tr>
+                    <td class="tdlabelCita"><label>Hora inicial:</label></td>
+                    <td><input type="time" id="txtApellidosP" name="txtApellidosP" class="cita" /></td>
+                </tr>
+                <tr>
+                    <td class="tdlabelCita"><label>Hora final:</label></td>
+                    <td><input type="time" id="txtDireccionP" name="txtDireccionP" class="cita" /></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td><input type="submit" id="btnAceptarCita" name="btnAceptarCita" value="Guardar" /></td>
+                </tr>
+            </table>
             <br />
             <table id="tblCitas" class="footable">
                 <thead>
@@ -280,7 +275,7 @@
                         <th>Hora de finalizacion</th>
                     </tr>
                 </thead>
-                <tbody id="tblBodyCitas">
+                <tbody id="tblBody">
                 </tbody>
             </table>
         </div>
@@ -378,45 +373,12 @@
                 panels.map(panel => panel.classList.remove('active'));
                 panels[i].classList.add('active');
 
-                //si hago click en la pestania de Citas...
                 if (i == 1) {
-                    var cod_paciente = document.getElementById("txtCodigoPaciente").value;  //obtengo el valor del codigo de paciente del campo de codigo paciente
-                    var nom_paciente = document.getElementById("txtNombrePaciente").value + " " + document.getElementById("txtApellidosPaciente").value; //obtengo el nombre completo del paciente
-
-                    $.getJSON("/Expediente/ModificarExpedienteCitas", { codigo_paciente: cod_paciente, nombre_paciente: nom_paciente }, function (respuesta_controlador) {
-                        $.each(respuesta_controlador, function (key, value) {
-                            $('#tblBodyCitas tr:not(:first-child)').slice(0).remove();  //primero borro todas las filas de la tabla
-
-                            tabla = document.getElementById("tblBodyCitas");
-                            var tr = document.createElement("tr");
-
-                            var columnaFechaCita = document.createElement("td");
-                            columnaFechaCita.innerHTML = value.fecha_cita;
-
-                            var columnaHoraInicio = document.createElement("td");
-                            columnaHoraInicio.innerHTML = value.hora_inicio;
-
-                            var columnaHoraFin = document.createElement("td");
-                            columnaHoraFin.innerHTML = value.hora_fin;
-
-                            tr.appendChild(columnaFechaCita);
-                            tr.appendChild(columnaHoraInicio);
-                            tr.appendChild(columnaHoraFin);
-                            tabla.appendChild(tr);
-                        });
-                    });
-                }
-                //Si hago click en la pestania de Consultas...
-                if (i == 2) {
-                    //alert("presione la pestania Consultas");
+                    
                 }
             }
         });
-    })(document)
-
-    //$(document).ready(function () {
-    //    $('#grid').DataTable();
-    //});
+    });
 </script>
 <style>
     .footable {

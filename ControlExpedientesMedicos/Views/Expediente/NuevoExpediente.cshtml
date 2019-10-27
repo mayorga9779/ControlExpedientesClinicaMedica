@@ -70,6 +70,11 @@
                 swal('ADVERTENCIA', 'Debe llenar todos los campos del formulario!', 'warning');
             });
         }
+        if (mensaje == "EXISTE") {
+            $(document).ready(function () {
+                swal('ADVERTENCIA', 'El paciente seleccionado ya tiene un expediente abierto.', 'warning');
+            });
+        }
         if (mensaje == "EXCEPTION") {
             $(document).ready(function () {
                 swal('ADVERTENCIA', 'Ocurrio una excepcion al tratar de guardar la informacion del expediente.', 'warning');

@@ -31,14 +31,17 @@ namespace ControlExpedientesMedicos
             services.Configure<CookiePolicyOptions>(options =>
             {
                 // This lambda determines whether user consent for non-essential cookies is needed for a given request.
-                options.CheckConsentNeeded = context => true;
+                options.CheckConsentNeeded = context => false; //true;      //se debe setear a false para que las variables de sesion lleven datos
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
             services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             services.AddDefaultIdentity<IdentityUser>().AddDefaultUI(UIFramework.Bootstrap4).AddEntityFrameworkStores<ApplicationDbContext>();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
-            //services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            services.AddMvc().AddSessionStateTempDataProvider();    //debo agregar esta linea para manejar sesiones
+            services.AddMemoryCache();  //debo agregar esta linea para maner sesiones
+            services.AddSession();  //debo agregar esta linea para manejar sesiones
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();  //debo agregar esta linea para manejar sesiones
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -61,6 +64,7 @@ namespace ControlExpedientesMedicos
             app.UseCookiePolicy();
 
             app.UseAuthentication();
+            app.UseSession();               //agrego esta linea para poder usar variables de sesion en .net core
 
             app.UseMvc(routes =>
             {

@@ -19,6 +19,11 @@ namespace ControlExpedientesMedicos.Controllers
             mensaje = "";
             ViewData["mensaje"] = mensaje;
 
+            //int codPaciente = Convert.ToInt32( HttpContext.Session.GetString("codigo_paciente"));            
+            //String nomPaciente = HttpContext.Session.GetString("nombre_paciente").ToString();
+            ViewData["codigo_paciente"] = HttpContext.Session.GetString("codigo_paciente");
+            ViewData["nombre_paciente"] = HttpContext.Session.GetString("nombre_paciente");
+
             try
             {
                 int opcion = 1;

@@ -3,7 +3,8 @@
     ViewData["Title"] = "Citas";
     Layout = "~/Views/Shared/_MasterPage.cshtml";
 }
-
+@using Microsoft.AspNetCore.Http
+@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
 <!DOCTYPE html>
 <html lang="es-gt">
 <head>
@@ -56,7 +57,8 @@
         var mensaje = '@ViewData["mensaje"].ToString()';
 
         if (mensaje == "OK") {
-                $(document).ready(function () {
+            $(document).ready(function () {
+                    @HttpContext.Session.SetString("codigo_paciente", "");
                     swal('MENSAJE', 'La cita fue creada con exito', 'success');
                 });
         }
@@ -77,11 +79,25 @@
         }
     </script>
     <script>
+        var codigo_paciente = @ViewData["codigo_paciente"].ToString();
+        var nombre_paciente = "@ViewData["nombre_paciente"].ToString()";
         //lleno el select de las clinicas
+        //$.getJSON("/Paciente/ObtenerPacientes", { opcion: 1 }, function (respuesta_controlador) {
+        //    $.each(respuesta_controlador, function (key, value) {
+        //        $("#cbPaciente").append("<option value='" + value.pac_codigo + "'>" + value.pac_nombre + "</option>");
+        //    });
+        //});
         $.getJSON("/Paciente/ObtenerPacientes", { opcion: 1 }, function (respuesta_controlador) {
-            $.each(respuesta_controlador, function (key, value) {
-                $("#cbPaciente").append("<option value='" + value.pac_codigo + "'>" + value.pac_nombre + "</option>");
-            });
+            //si las variables tiene codigo y nombre de paciente, que los agregue al combobox de pacientes, sino que los llene
+            if (codigo_paciente != null && nombre_paciente != null) {
+                $("#cbPaciente").append("<option selected = \"true\" value='" + codigo_paciente + "'>" + nombre_paciente + "</option>");
+                codigo_paciente = null;
+                nombre_paciente = null;
+            } else {
+                $.each(respuesta_controlador, function (key, value) {
+                    $("#cbPaciente").append("<option value='" + value.pac_codigo + "'>" + value.pac_nombre + "</option>");
+                });
+            }
         });
     </script>
 </head>
