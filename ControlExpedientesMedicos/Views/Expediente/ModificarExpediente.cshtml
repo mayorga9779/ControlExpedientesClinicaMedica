@@ -157,7 +157,7 @@
                     <td class="tdlabel"><label>Expediente No.:</label></td>
                     <td style="width: 300px;"><input type="text" id="txtNoExpediente" name="txtNoExpediente" class="expediente" value="@ViewBag.codigo_expediente" /></td>
                     <td class="tdlabel"><label>Codigo paciente:</label></td>
-                    <td style="width: 300px;"><input type="text" id="txtCodigoPaciente" name="txtCodigoPaciente" class="expediente" value="@ViewBag.codigo_expediente" /></td>
+                    <td style="width: 300px;"><input type="text" id="txtCodigoPaciente" name="txtCodigoPaciente" class="expediente" value="@ViewBag.codigo_paciente" /></td>
 
                     @*<td style="width: 100px;" class="tdlabel"><label></label></td>
                         <td rowspan="6"><img src="~/img/user.png" alt="" width="200" height="250"></td>*@
@@ -267,7 +267,7 @@
                         </tr>*@
                     <tr>
                         <td></td>
-                        <td><input type="submit" id="btnAceptarCita" name="btnAceptarCita" value="Guardar" /></td>
+                        <td><input type="submit" id="btnAceptarCita" name="btnAceptarCita" value="Crear cita" /></td>
                     </tr>
                 </table>
             </form>
@@ -369,7 +369,7 @@
 
         d.getElementById('tabs').addEventListener('click', function (e) {
             if (e.target.classList.contains('tabs_item')) { //valido que lo que se clickea sea la pestania y no el contenedor
-                //alert('clickea la pestania');
+                //obtengo el indice de la pestania a la que le estoy haciendo click
                 let i = tabs.indexOf(e.target);
                 //map es un metodo de cualquier array que permite recorrerlo sin hacer un ciclo, y a cada uno de los elementos hacerles una modificacion y devuelve un nuevo array
                 tabs.map(tab => tab.classList.remove('liActivo'));
@@ -382,16 +382,24 @@
                 if (i == 1) {
                     var cod_paciente = document.getElementById("txtCodigoPaciente").value;  //obtengo el valor del codigo de paciente del campo de codigo paciente
                     var nom_paciente = document.getElementById("txtNombrePaciente").value + " " + document.getElementById("txtApellidosPaciente").value; //obtengo el nombre completo del paciente
-
+                    //primero borro todas las filas de citas que tiene la tabla
                     $.getJSON("/Expediente/ModificarExpedienteCitas", { codigo_paciente: cod_paciente, nombre_paciente: nom_paciente }, function (respuesta_controlador) {
                         $.each(respuesta_controlador, function (key, value) {
-                            $('#tblBodyCitas tr:not(:first-child)').slice(0).remove();  //primero borro todas las filas de la tabla
-
+                            $(".fila").remove();
+                        });
+                    });
+                    //luego agrego nuevamente las filas de citas a la tabla, pero actualizada de la base de datos.
+                    $.getJSON("/Expediente/ModificarExpedienteCitas", { codigo_paciente: cod_paciente, nombre_paciente: nom_paciente }, function (respuesta_controlador) {
+                        $.each(respuesta_controlador, function (key, value) {
                             tabla = document.getElementById("tblBodyCitas");
                             var tr = document.createElement("tr");
+                            tr.setAttribute('class', 'fila');   //le pongo como clase = fila a la fila tr, esto me servira para poder eliminar las filas
 
                             var columnaFechaCita = document.createElement("td");
-                            columnaFechaCita.innerHTML = value.fecha_cita;
+                            var cadena_fecha;
+                            cadena_fecha = value.fecha_cita;
+                            //le doy formato a la columna fecha para que la cadena salga como dd-MM-yyyy
+                            columnaFechaCita.innerHTML = [cadena_fecha.slice(8, 10), "-", cadena_fecha.slice(5, 7), "-", cadena_fecha.slice(0, 4)].join('');
 
                             var columnaHoraInicio = document.createElement("td");
                             columnaHoraInicio.innerHTML = value.hora_inicio;

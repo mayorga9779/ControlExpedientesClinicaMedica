@@ -7,6 +7,7 @@ namespace ControlExpedientesMedicos.Models
 {
     public class Expediente
     {
+        int codigo_paciente;
         int codigo_expediente;
         String descripcion_expediente;
         String nombres_paciente;
@@ -22,8 +23,9 @@ namespace ControlExpedientesMedicos.Models
         {
         }
 
-        public Expediente(int codigo_expediente, string descripcion_expediente, string nombres_paciente, string apellidos_paciente, string direccion_paciente, string telefono_paciente, DateTime fecha_nacimiento, string seguro_social, string genero, string email)
+        public Expediente(int codigo_paciente, int codigo_expediente, string descripcion_expediente, string nombres_paciente, string apellidos_paciente, string direccion_paciente, string telefono_paciente, DateTime fecha_nacimiento, string seguro_social, string genero, string email)
         {
+            this.Codigo_paciente = codigo_paciente;
             this.Codigo_expediente = codigo_expediente;
             this.Descripcion_expediente = descripcion_expediente;
             this.Nombres_paciente = nombres_paciente;
@@ -36,6 +38,7 @@ namespace ControlExpedientesMedicos.Models
             this.Email = email;
         }
 
+        public int Codigo_paciente { get => codigo_paciente; set => codigo_paciente = value; }
         public int Codigo_expediente { get => codigo_expediente; set => codigo_expediente = value; }
         public string Descripcion_expediente { get => descripcion_expediente; set => descripcion_expediente = value; }
         public string Nombres_paciente { get => nombres_paciente; set => nombres_paciente = value; }

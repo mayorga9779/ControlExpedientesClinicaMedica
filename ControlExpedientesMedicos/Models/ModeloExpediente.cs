@@ -63,16 +63,17 @@ namespace ControlExpedientesMedicos.Models
             {
                 while (reader.Read())
                 {
-                    int codigo_expediente = reader.GetInt32(0);
-                    String descripcion = reader.GetString(1);
-                    String nombres = reader.GetString(2);
-                    String apellidos = reader.GetString(3);
-                    String direccion = reader.GetString(4);
-                    String telefono = reader.GetString(5);
-                    DateTime fecha_nacimiento = reader.GetDateTime(6);
-                    String seguro_social = reader.GetString(7);
-                    String genero = reader.GetString(8);
-                    String email = reader.GetString(9);
+                    int codigo_pacientes = reader.GetInt32(0);
+                    int codigo_expediente = reader.GetInt32(1);
+                    String descripcion = reader.GetString(2);
+                    String nombres = reader.GetString(3);
+                    String apellidos = reader.GetString(4);
+                    String direccion = reader.GetString(5);
+                    String telefono = reader.GetString(6);
+                    DateTime fecha_nacimiento = reader.GetDateTime(7);
+                    String seguro_social = reader.GetString(8);
+                    String genero = reader.GetString(9);
+                    String email = reader.GetString(10);
 
                     if (genero.Equals("F"))
                     {
@@ -83,7 +84,7 @@ namespace ControlExpedientesMedicos.Models
                         genero = "MASCULINO";
                     }
 
-                    expediente = new Expediente(codigo_expediente, descripcion, nombres, apellidos, direccion, telefono, fecha_nacimiento, seguro_social, genero, email);
+                    expediente = new Expediente(codigo_pacientes, codigo_expediente, descripcion, nombres, apellidos, direccion, telefono, fecha_nacimiento, seguro_social, genero, email);
                 }
             }
 

@@ -74,6 +74,7 @@ namespace ControlExpedientesMedicos.Controllers
 
             if (expediente != null)
             {
+                ViewBag.codigo_paciente = expediente.Codigo_paciente;
                 ViewBag.codigo_expediente = expediente.Codigo_expediente;
                 ViewBag.descripcion = expediente.Descripcion_expediente;
                 ViewBag.nombres = expediente.Nombres_paciente;
@@ -93,6 +94,7 @@ namespace ControlExpedientesMedicos.Controllers
         public JsonResult ModificarExpedienteCitas(int codigo_paciente, String nombre_paciente) //en javascript el nombre de parametro que envio es codigo_paciente
         {
             ArrayList listaCitas = new ArrayList();
+            //creo dos variables de sesion, una que contenga el codigo de paciente y el otro el nombre del paciente
             HttpContext.Session.SetString("codigo_paciente", codigo_paciente.ToString());
             HttpContext.Session.SetString("nombre_paciente", nombre_paciente);
 
