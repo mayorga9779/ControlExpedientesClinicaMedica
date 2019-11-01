@@ -19,12 +19,8 @@ namespace ControlExpedientesMedicos.Controllers
             mensaje = "";
             ViewData["mensaje"] = mensaje;
 
-            //int codPaciente = Convert.ToInt32( HttpContext.Session.GetString("codigo_paciente"));            
-            //String nomPaciente = HttpContext.Session.GetString("nombre_paciente").ToString();
             if (HttpContext.Session.GetString("codigo_paciente") != null)
             {
-                //ViewData["codigo_paciente"] = HttpContext.Session.GetString("codigo_paciente");
-                //ViewData["nombre_paciente"] = HttpContext.Session.GetString("nombre_paciente");
                 ViewBag.codigo_paciente = HttpContext.Session.GetString("codigo_paciente");
                 ViewBag.nombre_paciente = HttpContext.Session.GetString("nombre_paciente");
 

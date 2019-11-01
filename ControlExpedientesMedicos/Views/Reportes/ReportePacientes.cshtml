@@ -33,7 +33,7 @@
             width: 100%;
         }
 
-        #btnAceptar {
+        #btnVerRpt, #btnExppdf {
             width: 125px;
             height: 40px;
         }
@@ -42,6 +42,18 @@
             width: 200px;
         }
     </style>
+
+
+
+
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.11.4/sweetalert2.all.js'></script>
+    <script src='https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
+    <script>
+        //lleno la tabla para mostrar los pacientes
+        //$(document).ready(function () {
+
+        //});
+    </script>
 </head>
 
 <div id="divContenidoReportePacientes">
@@ -49,9 +61,197 @@
         <h1>Reporte de pacientes</h1>
     </div>
     <div id="divContenido">
-        <form>
-        </form>
+        <table id="tblFiltros">
+            <tr>
+                <td>Fecha ingreso del:</td>
+                <td><input type="date" id="dpFecIni" name="dpFecIni" class="rep" autofocus /></td>
+                <td>Al:</td>
+                <td><input type="date" id="dpFecFin" name="dpFecFin" class="rep" /></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+        </table>
+        <br />
+        <br />
+        <hr />
+        <table>
+            <tr>
+                <td></td>
+                <td><input type="submit" id="btnVerRpt" name="btnVerRpt" value="Aceptar" /></td>
+                <td><input type="submit" id="btnExppdf" name="btnExppdf" value="Exportar PDF" /></td>
+                @*<td><input type="submit" id="btnExpxls" name="btnExpxls" value="Exportar Excel" /></td>*@
+            </tr>
+        </table>
+        <br />
+        <br />
+
+        <table id="tblReportePacientes" class="footable">
+            <thead>
+                <tr>
+                    <td colspan="8" style="text-align:center; font-size:x-large;">
+                        <label>REPORTE DE PACIENTES</label>
+                    </td>
+                </tr>
+                <tr>
+                    <th>No. expediente</th>
+                    <th>Cod. paciente</th>
+                    <th>Paciente</th>
+                    <th>Fecha alta</th>
+                    @*<th>Genero</th>*@
+                    <th>Fecha nacimiento</th>
+                    <th>Direccion</th>
+                    <th>Telefono</th>
+                </tr>
+            </thead>
+            <tbody id="tblBody">
+            </tbody>
+        </table>
     </div>
+    <style>
+        .footable {
+            width: 100%;
+            font-family: 'trebuchet MS', 'Lucida sans', Arial;
+            font-size: 14px;
+            color: #444;
+            border: solid #ccc 1px;
+            border-collapse: separate;
+            border-spacing: 0;
+        }
+
+            .footable > tbody > tr > td, .footable > thead > tr > th {
+                border-left: 1px solid #ccc;
+                border-top: 1px solid #ccc;
+                padding: 10px;
+                text-align: left;
+            }
+
+            .footable > thead > tr > th, .footable > thead > tr > td {
+                background-color: #dce9f9;
+            }
+
+        .footable {
+            -moz-border-radius: 6px;
+            -webkit-border-radius: 6px;
+            border-radius: 6px;
+        }
+
+            .footable > thead > tr > th {
+                background-image: -webkit-gradient(linear, left top, left bottom, from(#ebf3fc), to(#dce9f9));
+                background-image: -webkit-linear-gradient(top, #ebf3fc, #dce9f9);
+                background-image: -moz-linear-gradient(top, #ebf3fc, #dce9f9);
+                background-image: -ms-linear-gradient(top, #ebf3fc, #dce9f9);
+                background-image: -o-linear-gradient(top, #ebf3fc, #dce9f9);
+                background-image: linear-gradient(to bottom, #ebf3fc, #dce9f9);
+                -webkit-box-shadow: 0 1px 0 rgba(255,255,255,.8) inset;
+                -moz-box-shadow: 0 1px 0 rgba(255,255,255,.8) inset;
+                box-shadow: 0 1px 0 rgba(255,255,255,.8) inset;
+                border-top: none;
+                text-shadow: 0 1px 0 rgba(255,255,255,.5);
+            }
+
+            .footable > tbody > tr:hover {
+                background: #fbf8e9;
+            }
+    </style>
+    <script src="~/js/jspdf.min.js"></script>
+    <script src="~/js/jspdf.plugin.autotable.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $('#tblReportePacientes').DataTable({
+                dom: 'Bfrtip',
+                buttons: [
+                    'copyHtml5',
+                    'excelHtml5',
+                    'csvHtml5',
+                    'pdfHtml5'
+                ]
+            });
+        });
+    </script>
+
+    <script>
+        //Boton aceptar para ver el reporte en la vista
+        $("#btnVerRpt").click(function () {
+            var fecha_ini = $("#dpFecIni").val();
+            var fecha_fin = $("#dpFecFin").val();
+
+            if (fecha_ini == "") {
+                fecha_ini = null;
+            } else {
+                fecha_ini = fecha_ini.replace("-", "");
+                fecha_ini = fecha_ini.replace("-", "");
+            }
+            if (fecha_fin == "") {
+                fecha_fin = null;
+            } else {
+                fecha_fin = fecha_fin.replace("-", "");
+                fecha_fin = fecha_fin.replace("-", "");
+            }
+
+            //primero borro todas las filas de citas que tiene la tabla
+            $.getJSON("/Reportes/ObtenerListadoPacientes", { opcion: 1, fecha_inicio: fecha_ini, fecha_fin: fecha_fin, genero: null }, function (respuesta_controlador) {
+                $.each(respuesta_controlador, function (key, value) {
+                    $(".fila").remove();
+                });
+            });
+
+            $.getJSON("/Reportes/ObtenerListadoPacientes", { opcion: 1, fecha_inicio: fecha_ini, fecha_fin: fecha_fin, genero: null }, function (respuesta_controlador) {
+                $.each(respuesta_controlador, function (key, value) {
+                    tabla = document.getElementById("tblBody");
+                    var tr = document.createElement("tr");
+                    tr.setAttribute('class', 'fila');   //le pongo como clase = fila a la fila tr, esto me servira para poder eliminar las filas
+
+                    var cod_expediente = document.createElement("td");
+                    cod_expediente.innerHTML = value.codigo_expediente;
+
+                    var cod_paciente = document.createElement("td");
+                    cod_paciente.innerHTML = value.codigo_paciente;
+
+                    var paciente = document.createElement("td");
+                    paciente.innerHTML = value.paciente;
+
+                    var fecha_ingreso = document.createElement("td");
+                    fecha_ingreso.innerHTML = value.fecha_alta;
+
+                    //var genero = document.createElement("td");
+                    //genero.innerHTML = value.genero;
+
+                    var fecha_nacimiento = document.createElement("td");
+                    fecha_nacimiento.innerHTML = value.fecha_nacimiento;
+
+                    var direccion = document.createElement("td");
+                    direccion.innerHTML = value.direccion;
+
+                    var telefono = document.createElement("td");
+                    telefono.innerHTML = value.telefono;
+                    //agrego los columnas a las filas
+                    tr.appendChild(cod_expediente);
+                    tr.appendChild(cod_paciente);
+                    tr.appendChild(paciente);
+                    tr.appendChild(fecha_ingreso);
+                    //tr.appendChild(genero);
+                    tr.appendChild(fecha_nacimiento);
+                    tr.appendChild(direccion);
+                    tr.appendChild(telefono);
+                    //agrego las filas a l a tabla
+                    tabla.appendChild(tr);
+                });
+            });
+        });
+        //boton exportar a pdf
+        $("#btnExppdf").click(function () {
+            var doc = new jsPDF();
+            doc.autoTable({ html: '#tblReportePacientes' });
+            var fecha = new Date();
+            var fecha_larga = fecha.getDate() + "_" + fecha.getMonth() + "_" + fecha.getUTCFullYear() + " " + fecha.getHours() + ":" + fecha.getMinutes() + ":" + fecha.getSeconds();
+            doc.save('ReporteDePacientes_' + fecha_larga + '.pdf');
+        });
+    </script>
 </div>
 </html>
 

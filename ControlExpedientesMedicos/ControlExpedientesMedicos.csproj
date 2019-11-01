@@ -14,4 +14,11 @@
     <PackageReference Include="Nancy" Version="2.0.0" />
   </ItemGroup>
 
+
+  <ItemGroup>
+    <Reference Include="HiQPdf.NetCore">
+      <HintPath>HiQPdf.NetCore.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
 </Project>

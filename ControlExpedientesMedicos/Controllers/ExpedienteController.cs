@@ -12,6 +12,7 @@ namespace ControlExpedientesMedicos.Controllers
     {
         private ModeloExpediente modeloExpediente = new ModeloExpediente();
         private ModeloCita modeloCita = new ModeloCita();
+        private ModeloConsulta modeloConsulta = new ModeloConsulta();
         private Expediente expediente = null;
         private String mensaje = "";
 
@@ -101,6 +102,18 @@ namespace ControlExpedientesMedicos.Controllers
             listaCitas = modeloCita.ObtenerDetalleCitas(codigo_paciente);
 
             return Json(listaCitas);
+        }
+
+        public JsonResult ModificarExpedienteConsultas(int codigo_paciente, String nombre_paciente) //en javascript el nombre de parametro que envio es codigo_paciente
+        {
+            ArrayList listaConsultas = new ArrayList();
+            //creo dos variables de sesion, una que contenga el codigo de paciente y el otro el nombre del paciente
+            HttpContext.Session.SetString("codigo_paciente", codigo_paciente.ToString());
+            HttpContext.Session.SetString("nombre_paciente", nombre_paciente);
+
+            listaConsultas = modeloConsulta.ObtenerDetalleConsultas(codigo_paciente);
+
+            return Json(listaConsultas);
         }
     }
 }

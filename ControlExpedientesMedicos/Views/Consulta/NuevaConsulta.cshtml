@@ -1,0 +1,142 @@
+﻿
+@{
+    ViewData["Title"] = "Consultas";
+    Layout = "~/Views/Shared/_MasterPage.cshtml";
+}
+@using Microsoft.AspNetCore.Http
+@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
+<!DOCTYPE html>
+<html lang="es-gt">
+<head>
+    <meta charset="UTF-8" />
+    <title>Citas</title>
+    <style>
+        #divContenidoCita {
+            position: relative;
+            float: left;
+            width: 100%;
+            height: 100%;
+            overflow-x: auto;
+        }
+
+        #diviTitulo {
+            position: relative;
+            float: left;
+            width: 100%;
+            height: 10%;
+            text-align: center;
+            margin: 0;
+            color: #808080;
+            margin-bottom: 20px;
+        }
+
+        #tblContenido {
+            width: 25%;
+        }
+
+        #btnAceptarConsulta {
+            width: 125px;
+            height: 40px;
+        }
+
+        .paciente {
+            width: 200px;
+        }
+
+        .tdlabel {
+            width: 200px;
+        }
+
+        .txtInput {
+            width: 225px;
+        }
+    </style>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.11.4/sweetalert2.all.js'></script>
+    <script src='https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
+    <script>
+        var mensaje = '@ViewData["mensaje"].ToString()';
+
+        if (mensaje == "OK") {
+            $(document).ready(function () {
+                    swal('MENSAJE', 'La cita fue creada con exito', 'success');
+                });
+        }
+        if (mensaje == "ERROR") {
+            $(document).ready(function () {
+                swal('ERROR', 'Ocurrio un error al guardar los datos de la cita', 'error');
+            });
+        }
+        if (mensaje == "VACIO") {
+            $(document).ready(function () {
+                swal('ADVERTENCIA', 'Debe llenar todos los campos del formulario!', 'warning');
+            });
+        }
+        if (mensaje == "EXCEPTION") {
+            $(document).ready(function () {
+                swal('ADVERTENCIA', 'Ocurrio una excepcion al tratar de guardar la informacion de la cita.', 'warning');
+            });
+        }
+    </script>
+    <script>
+        var codigo_paciente = 0;
+        var nombre_paciente = 0;
+        
+        if (@ViewBag.codigo_paciente != 0) {
+            var codigo_paciente = @ViewBag.codigo_paciente;
+            var nombre_paciente = "@ViewBag.nombre_paciente";
+        }
+
+        $.getJSON("/Paciente/ObtenerPacientes", { opcion: 1 }, function (respuesta_controlador) {
+            //aqui valido si el combobox se llena con la informacion de un paciente, o se llena con la info de la base de datos.
+            if (codigo_paciente != 0 && nombre_paciente != 0) {
+                $("#cbPaciente").append("<option selected = \"true\" value='" + codigo_paciente + "'>" + nombre_paciente + "</option>");
+            } else {
+                $.each(respuesta_controlador, function (key, value) {
+                    $("#cbPaciente").append("<option value='" + value.pac_codigo + "'>" + value.pac_nombre + "</option>");
+                });
+            }
+            $('dpFechaCita').focus;
+        });
+    </script>
+</head>
+
+<div id="divContenidoCita">
+    <div id="diviTitulo">
+        <h1>Creación de consultas</h1>
+    </div>
+    <div id="divContenido">
+        <form action="/Consulta/NuevaConsulta/" method="post">
+            <table>
+                <td class="tdlabel"><label>Paciente:</label></td>
+                <td>
+                    <select id="cbPaciente" name="cbPaciente" class="cita" required>
+                        <option value="">-- Selecione una opcion --</option>
+                    </select>
+                </td>
+                @*<td class="tdlabel"><label>Medico:</label></td>
+                <td>
+                    <select id="cbMedico" name="cbMedico" class="cita" required>
+                        <option value="">-- Selecione una opcion --</option>
+                    </select>
+                </td>*@
+                <tr>
+                    <td><label>Motivo de la consulta:</label></td>
+                    <td><textarea cols="100" rows="5" id="taMotivo" name="taMotivo" required></textarea></td>
+                </tr>
+                <tr>
+                    <td><label>Sintomas:</label></td>
+                    <td><textarea cols="100" rows="5" id="taSintomas" name="taSintomas" required></textarea></td>
+                </tr>
+                <tr>
+                    <td><label>Diagnostico:</label></td>
+                    <td><textarea cols="100" rows="5" id="taDiagnostico" name="taDiagnostico" required></textarea></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td><input type="submit" id="btnAceptarConsulta" name="btnAceptarConsulta" value="Guardar" /></td>
+                </tr>
+            </table>
+        </form>
+    </div>
+</div>
+</html>

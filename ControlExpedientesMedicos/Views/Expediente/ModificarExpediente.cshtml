@@ -42,6 +42,10 @@
             width: 42%;
         }
 
+        #tblConsultas{
+            width: 100%;
+        }
+
         #btnAceptarCita, #btnAceptarPaciente, #btnAceptarConsulta {
             width: 125px;
             height: 40px;
@@ -66,7 +70,7 @@
         #divListadoConsultas {
             position: relative;
             float: left;
-            width: 40%;
+            width: 75%;
         }
 
         #divResumenConsultas {
@@ -253,18 +257,6 @@
             @*<div id="skeduler-container"></div>*@
             <form action="/Cita/NuevaCita" method="post">
                 <table id="tblExpediente_Cita">
-                    @*<tr>
-                            <td class="tdlabelCita"><label>Fecha cita:</label></td>
-                            <td class="txtInput"><input type="date" id="dpFechaCita" name="dpFechaCita" class="cita" /></td>
-                        </tr>
-                        <tr>
-                            <td class="tdlabelCita"><label>Hora inicial:</label></td>
-                            <td><input type="time" id="txtApellidosP" name="txtApellidosP" class="cita" /></td>
-                        </tr>
-                        <tr>
-                            <td class="tdlabelCita"><label>Hora final:</label></td>
-                            <td><input type="time" id="txtDireccionP" name="txtDireccionP" class="cita" /></td>
-                        </tr>*@
                     <tr>
                         <td></td>
                         <td><input type="submit" id="btnAceptarCita" name="btnAceptarCita" value="Crear cita" /></td>
@@ -291,67 +283,70 @@
             </div>*@
         @*PANEL DE CONSULTAS*@
         <div class="panels_item">
-            <table>
-                <tr>
-                    <td><label>Motivo de la consulta:</label></td>
-                    <td><textarea cols="100" rows="1" id="taMotivo" name="taMotivo"></textarea></td>
-                </tr>
-                <tr>
-                    <td><label>Sintomas:</label></td>
-                    <td><textarea cols="100" rows="1" id="taSintomas" name="taSintomas"></textarea></td>
-                </tr>
-                <tr>
-                    <td><label>Diagnostico:</label></td>
-                    <td><textarea cols="100" rows="1" id="taDiagnostico" name="taDiagnostico"></textarea></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td><input type="submit" id="btnAceptarConsulta" name="btnAceptarConsulta" value="Guardar" /></td>
-                </tr>
-            </table>
+            <form action="/Consulta/NuevaConsulta">
+                <table>
+                    <tr>
+                        <td></td>
+                        <td><input type="submit" id="btnAceptarConsulta" name="btnAceptarConsulta" value="Crear consulta" /></td>
+                    </tr>
+                </table>
+            </form>
             <hr />
             <div class="diviTitulo">
                 <h1>Listado de consultas</h1>
             </div>
             <div id="divListadoConsultas">
                 <label>Listado de consutas</label>
-                <table id="grid" class="table table-striped table-bordered dt-responsive nowrap">
+                <table id="tblConsultas" class="footable">
                     <thead>
                         <tr>
-                            <th>Medico</th>
-                            <th>Fecha de consulta</th>
+                            <th>Motivo</th>
+                            <th>Sintomas</th>
+                            <th>Diagnostico</th>
+                            <th>Fecha consulta</th>
                         </tr>
                     </thead>
-
-                    <tbody>
-                        <tr>
-                            <td>Dr. Eddy Davila</td>
-                            <td>25/07/2019 14:00</td>
-                        </tr>
-                        <tr>
-                            <td>Dr. Luis Alfonso Perez</td>
-                            <td>28/07/2019 16:00</td>
-                        </tr>
+                    <tbody id="tblBodyConsultas">
                     </tbody>
                 </table>
+
+                @*<table id="grid" class="table table-striped table-bordered dt-responsive nowrap">
+                        <thead>
+                            <tr>
+                                <th>Medico</th>
+                                <th>Fecha de consulta</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            <tr>
+                                <td>Dr. Eddy Davila</td>
+                                <td>25/07/2019 14:00</td>
+                            </tr>
+                            <tr>
+                                <td>Dr. Luis Alfonso Perez</td>
+                                <td>28/07/2019 16:00</td>
+                            </tr>
+                        </tbody>
+                    </table>*@
             </div>
-            <div id="divResumenConsultas">
-                <label>Resumen de la consulta seleccionada</label>
-                <table>
-                    <tr>
-                        <td><label>Consulta:</label></td>
-                        <td><textarea cols="100" rows="5" id="taConsulta2" name="taConsulta2"></textarea></td>
-                    </tr>
-                    <tr>
-                        <td><label>Sintomas:</label></td>
-                        <td><textarea cols="100" rows="5" id="taSintomas2" name="taSintomas2"></textarea></td>
-                    </tr>
-                    <tr>
-                        <td><label>Diagnostico:</label></td>
-                        <td><textarea cols="100" rows="5" id="taDiagnostico2" name="taDiagnostico2"></textarea></td>
-                    </tr>
-                </table>
-            </div>
+            @*<div id="divResumenConsultas">
+                    <label>Resumen de la consulta seleccionada</label>
+                    <table>
+                        <tr>
+                            <td><label>Consulta:</label></td>
+                            <td><textarea cols="100" rows="5" id="taConsulta2" name="taConsulta2"></textarea></td>
+                        </tr>
+                        <tr>
+                            <td><label>Sintomas:</label></td>
+                            <td><textarea cols="100" rows="5" id="taSintomas2" name="taSintomas2"></textarea></td>
+                        </tr>
+                        <tr>
+                            <td><label>Diagnostico:</label></td>
+                            <td><textarea cols="100" rows="5" id="taDiagnostico2" name="taDiagnostico2"></textarea></td>
+                        </tr>
+                    </table>
+                </div>*@
         </div>
 
         @*PANEL DE ESTADO DE CUENTA*@
@@ -416,7 +411,43 @@
                 }
                 //Si hago click en la pestania de Consultas...
                 if (i == 2) {
-                    //alert("presione la pestania Consultas");
+                    var cod_paciente = document.getElementById("txtCodigoPaciente").value;  //obtengo el valor del codigo de paciente del campo de codigo paciente
+                    var nom_paciente = document.getElementById("txtNombrePaciente").value + " " + document.getElementById("txtApellidosPaciente").value; //obtengo el nombre completo del paciente
+                    //primero borro todas las filas de citas que tiene la tabla
+                    $.getJSON("/Expediente/ModificarExpedienteConsultas", { codigo_paciente: cod_paciente, nombre_paciente: nom_paciente }, function (respuesta_controlador) {
+                        $.each(respuesta_controlador, function (key, value) {
+                            $(".filac").remove();
+                        });
+                    });
+
+                    //luego agrego nuevamente las filas de citas a la tabla, pero actualizada de la base de datos.
+                    $.getJSON("/Expediente/ModificarExpedienteConsultas", { codigo_paciente: cod_paciente, nombre_paciente: nom_paciente }, function (respuesta_controlador) {
+                        $.each(respuesta_controlador, function (key, value) {
+                            tabla = document.getElementById("tblBodyConsultas");
+                            var tr = document.createElement("tr");
+                            tr.setAttribute('class', 'filac');   //le pongo como clase = fila a la fila tr, esto me servira para poder eliminar las filas
+
+                            var columnaMotivo = document.createElement("td");
+                            columnaMotivo.innerHTML = value.motivo;
+
+                            var columnaSintoma = document.createElement("td");
+                            columnaSintoma.innerHTML = value.sintoma;
+
+                            var columnaDiagnostico = document.createElement("td");
+                            columnaDiagnostico.innerHTML = value.diagnostico;
+
+                            var columnaFechaConsulta = document.createElement("td");
+                            var cadena_fecha;
+                            cadena_fecha = value.fecha_consulta;
+                            columnaFechaConsulta.innerHTML = [cadena_fecha.slice(8, 10), "-", cadena_fecha.slice(5, 7), "-", cadena_fecha.slice(0, 4)].join('');
+
+                            tr.appendChild(columnaMotivo);
+                            tr.appendChild(columnaSintoma);
+                            tr.appendChild(columnaDiagnostico);
+                            tr.appendChild(columnaFechaConsulta);
+                            tabla.appendChild(tr);
+                        });
+                    });
                 }
             }
         });
